@@ -1,4 +1,4 @@
-# ReactReduxBasicAuthStarter
+# Social Work tool for teams
 
-Boiler plate project for React/Redux basic authentication
-
+-include chat
+-images/videos
