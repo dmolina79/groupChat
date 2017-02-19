@@ -70,7 +70,7 @@ class Signup extends Component {
 		const { handleSubmit } = this.props;
 
 		return (
-			<form onSubmit={() => handleSubmit(this.handleFormSubmit)}>
+			<form onSubmit={handleSubmit(this.handleFormSubmit)}>
 				{ _.map(FIELDS, this.renderField)}
 				{this.renderAlert()}
 				<button type="submit" className="btn btn-primary">Sign Up!</button>
