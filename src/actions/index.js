@@ -23,6 +23,7 @@ export function signinUser({ email, password }) {
 }
 
 export function signupUser({ email, password }) {
+		console.log(signupUser);
 		return function (dispatch) {
     firebase.auth().createUserWithEmailAndPassword(email, password)
       .then(() => {
