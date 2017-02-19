@@ -6,16 +6,16 @@ const FIELDS = {
 	email: {
 		type: 'input',
 		label: 'Email'
-	}, 
+	},
 	password: {
 		type: 'input',
 		label: 'Password'
 
-	}, 
+	},
 	passwordConfirm: {
 		type: 'input',
 		label: 'Confirm Password'
-	} 
+	}
 };
 
 class Signin extends Component {
@@ -29,7 +29,7 @@ class Signin extends Component {
 			return (
 				<div className="alert alert-danger">
 					<strong>Oops!</strong> {this.props.errorMessage}
-				</div>	
+				</div>
 			);
 		}
 	}
@@ -52,7 +52,7 @@ class Signin extends Component {
 				Sign in
 				</button>
 			</form>
-		);	
+		);
 	}
 }
 
