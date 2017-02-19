@@ -20,15 +20,15 @@ class Header extends Component {
 				<Link className="nav-link" to="/signup">Sign Up</Link>
 			</li>
 			];
-		}	
+		}
 	}
 
 	render() {
 		return (
 			<nav className="navbar navbar-light">
-				<Link to="/" className="navbar-brand">Redux Auth</Link>
+				<Link to="/" className="navbar-brand">Group Chat</Link>
 				<ul className="nav navbar-nav">
-					{this.renderLinks()}	
+					{this.renderLinks()}
 				</ul>
 			</nav>
 		);
