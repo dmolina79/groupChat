@@ -32,6 +32,7 @@ class Header extends Component {
 		return (
 
 
+
 			<nav className="navbar navbar-inverse">
 				<Link to="/" className="navbar-brand">Welcome to Group Chat</Link>
 
@@ -42,6 +43,7 @@ class Header extends Component {
 				<li className="nav-item" key={4}>
 					<Link className="nav-link" to="/">Find a GroupChat</Link>
 				</li>
+
 					{this.renderLinks()}
 				</ul>
 

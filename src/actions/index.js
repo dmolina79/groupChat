@@ -1,52 +1,46 @@
-import axios from 'axios';
 import { browserHistory } from 'react-router';
-import { 
-	AUTH_USER, 
+import firebase, { firebaseRef } from '../firebase';
+
+import {
+	AUTH_USER,
 	AUTH_ERROR,
-	UNAUTH_USER,
-	FETCH_MESSAGE
+	SIGN_OUT_USER
 
 } from './types';
-
-const ROOT_URL = 'http://localhost:3090';
 
 export function signinUser({ email, password }) {
 	return function (dispatch) {
 		//submit email/password to server
-		axios.post(`${ROOT_URL}/signin`, { email, password })
-			.then(response => {
-				//if request is good
-				// -update state if user authenticated
-				dispatch({ type: AUTH_USER });
-				// -save JWT token
-				localStorage.setItem('token', response.data.token);
-				// -redirect to the route '/feature'
-				browserHistory.push('/feature');	
-			})
-			.catch(() => {
-				//if request is bad
-				// -show error to the user
-				dispatch(authError('Bad Login Info'));
-			});		
+		firebase.auth().signInWithEmailAndPassword(email, password)
+      .then(() => {
+        dispatch(authUser());
+        browserHistory.push('/');
+      })
+      .catch(error => {
+        dispatch(authError(error));
+      });
 	};
 }
 
 export function signupUser({ email, password }) {
-	return function (dispatch) {
-		axios.post(`${ROOT_URL}/signup`, { email, password })
-			.then(response => {
-				//if request is good
-				// -update state if user authenticated
-				dispatch({ type: AUTH_USER });
-				// -save JWT token
-				localStorage.setItem('token', response.data.token);
-				// -redirect to the route '/feature'
-				browserHistory.push('/feature');	
-			})
-			.catch(error => {
-				dispatch(authError(error.response.data.error));
-			});		
-	};
+		console.log(signupUser);
+		return function (dispatch) {
+    firebase.auth().createUserWithEmailAndPassword(email, password)
+      .then(() => {
+        dispatch(authUser());
+        browserHistory.push('/');
+      })
+      .catch(error => {
+        console.log(error);
+        dispatch(authError(error));
+      });
+  };
+}
+
+export function authUser() {
+  return {
+    type: AUTH_USER
+  };
 }
 
 export function authError(error) {
@@ -56,26 +50,35 @@ export function authError(error) {
 	};
 }
 
+export function verifyAuth() {
+  return function (dispatch) {
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        dispatch(authUser());
+      } else {
+        dispatch(signoutUser());
+      }
+    });
+  };
+}
+
 export function signoutUser() {
-
-	localStorage.removeItem('token');
-
-	return {
-		type: UNAUTH_USER,
-	};
-}
-
-export function fetchMessage() {
 	return function (dispatch) {
-		axios.get(ROOT_URL, {
-			headers: { authorization: localStorage.getItem('token') }
-		})
-		.then(response => {
-			dispatch({
-				type: FETCH_MESSAGE,
-				payload: response.data.message
+		firebase.auth().signOut()
+			.then(() => {
+				//browserHistory.push('/');
+				dispatch({ type: SIGN_OUT_USER });
+			})
+			.catch(error => {
+				console.log(`error signing out. Detail ${error}`);
 			});
-		});
-	};
+		};
 }
 
+//TODO: implement firebase CRUD with Actions
+
+// export function fetchMessage() {
+// 	return function (dispatch) {
+//
+// 	};
+// }

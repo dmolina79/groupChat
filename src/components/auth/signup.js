@@ -7,29 +7,36 @@ const FIELDS = {
 	email: {
 		type: 'text',
 		label: 'Email'
-	}, 
+	},
 	password: {
 		type: 'password',
 		label: 'Password'
-	}, 
+	},
 	passwordConfirm: {
 		type: 'password',
 		label: 'Confirm Password'
-	} 
+	}
 };
 
 class Signup extends Component {
+	constructor(props) {
+		super(props);
+		this.handleFormSubmit = this.handleFormSubmit.bind(this);
+		this.renderField = this.renderField.bind(this);
+	}
+
 	handleFormSubmit(formProps) {
+		console.log('handle form submit');
 		//call action creator to sign up user
 		this.props.signupUser(formProps);
 	}
 
-	showError(fieldName) {	
+	showError(fieldName) {
 		return (
 			<div className="text-help">
 				{fieldName.touched ? fieldName.error : ''}
 			</div>
-		);		
+		);
 	}
 
 	showFormIsValid(fieldName) {
@@ -42,8 +49,8 @@ class Signup extends Component {
 				<div className="alert alert-danger">
 					<strong>Oops! </strong>
 					{this.props.errorMessage}
-				</div>	 
-			);	
+				</div>
+			);
 		}
 	}
 
@@ -61,10 +68,10 @@ class Signup extends Component {
 
 	render() {
 		const { handleSubmit } = this.props;
-		
+
 		return (
-			<form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>			
-				{_.map(FIELDS, this.renderField.bind(this))}
+			<form onSubmit={handleSubmit(this.handleFormSubmit)}>
+				{ _.map(FIELDS, this.renderField)}
 				{this.renderAlert()}
 				<button type="submit" className="btn btn-primary">Sign Up!</button>
 			</form>
@@ -77,7 +84,7 @@ function validate(values) {
 
 	_.each(FIELDS, (type, field) => {
 		if (!values[field]) {
-			errors[field] = `Enter a ${field}`; 
+			errors[field] = `Enter a ${field}`;
 		}
 	});
 
