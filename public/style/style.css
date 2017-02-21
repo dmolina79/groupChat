@@ -1,3 +1,15 @@
-.error {
-	color: red;
+
+
+#navbarNavAltMarkup {
+
+	color: white;
+}
+
+#nav1 {
+	float: right;
+}
+
+#signIn {
+	margin-top: 50px;
+	text-align: center;
 }

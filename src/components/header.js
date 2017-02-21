@@ -7,9 +7,14 @@ class Header extends Component {
 		const authenticated = this.props.authenticated;
 		if (authenticated) {
 			return (
+
+
 			<li className="nav-item" >
 				<Link className="nav-link" to="/signout">Sign Out</Link>
-			</li>);
+			</li>
+
+
+		);
 		} else {
 			//show sign in and sign up links
 			return [
@@ -20,16 +25,26 @@ class Header extends Component {
 				<Link className="nav-link" to="/signup">Sign Up</Link>
 			</li>
 			];
-		}	
+		}
 	}
 
 	render() {
 		return (
-			<nav className="navbar navbar-light">
-				<Link to="/" className="navbar-brand">Redux Auth</Link>
-				<ul className="nav navbar-nav">
-					{this.renderLinks()}	
+
+
+			<nav className="navbar navbar-inverse">
+				<Link to="/" className="navbar-brand">Welcome to Group Chat</Link>
+
+				<ul className="nav navbar-nav" id="nav1">
+				<li className="nav-item" key={3}>
+					<Link className="nav-link" to="/">Create a GroupChat</Link>
+				</li>
+				<li className="nav-item" key={4}>
+					<Link className="nav-link" to="/">Find a GroupChat</Link>
+				</li>
+					{this.renderLinks()}
 				</ul>
+
 			</nav>
 		);
 	}
