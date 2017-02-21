@@ -8,10 +8,14 @@ import {
 
 } from './types';
 
+export function getFirebaseAuth() {
+	return firebase.auth();
+}
+
 export function signinUser({ email, password }) {
 	return function (dispatch) {
 		//submit email/password to server
-		firebase.auth().signInWithEmailAndPassword(email, password)
+		getFirebaseAuth().signInWithEmailAndPassword(email, password)
       .then(() => {
         dispatch(authUser());
         browserHistory.push('/');
@@ -23,9 +27,8 @@ export function signinUser({ email, password }) {
 }
 
 export function signupUser({ email, password }) {
-		console.log(signupUser);
 		return function (dispatch) {
-    firebase.auth().createUserWithEmailAndPassword(email, password)
+    getFirebaseAuth().createUserWithEmailAndPassword(email, password)
       .then(() => {
         dispatch(authUser());
         browserHistory.push('/');
