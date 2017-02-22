@@ -6,14 +6,14 @@ import App from '../../src/components/app';
 /*global beforeEach b:true*/
 /*eslint no-undef: "error"*/
 
-describe('App', () => {
+describe('App Component Test', () => {
   let component;
 
   beforeEach(() => {
     component = renderComponent(App);
   });
 
-  it('renders something', () => {
+  it('Component renders something with Test Helper (Stephen)', () => {
     expect(component).to.exist;
   });
 });

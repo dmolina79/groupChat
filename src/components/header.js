@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
-class Header extends Component {
+export class Header extends Component {
 	renderLinks() {
 		const authenticated = this.props.authenticated;
 		if (authenticated) {
@@ -30,9 +30,6 @@ class Header extends Component {
 
 	render() {
 		return (
-
-
-
 			<nav className="navbar navbar-inverse">
 				<Link to="/" className="navbar-brand">Welcome to Group Chat</Link>
 
