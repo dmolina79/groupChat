@@ -13,3 +13,38 @@
 	margin-top: 50px;
 	text-align: center;
 }
+
+.form-group {
+
+	padding-left: 400px;
+	padding-right: 400px;
+}
+
+#email {
+	margin-top: 80px;
+}
+
+#btn {
+	margin-top: 25px;
+	margin-bottom: 80px;
+}
+#label1 {
+	margin-top: 10px;
+
+}
+#btn1 {
+	margin-left: 400px;
+	margin-bottom: 25px;
+}
+
+#signUp {
+	margin-top: 50px;
+	text-align: center;
+}
+#GroupChat{
+	margin-top: 50px;
+	text-align: center;
+}
+#GroupChat1 {
+	margin-top: 80px;
+}

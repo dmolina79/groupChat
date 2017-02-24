@@ -35,10 +35,10 @@ export class Header extends Component {
 
 				<ul className="nav navbar-nav" id="nav1">
 				<li className="nav-item" key={3}>
-					<Link className="nav-link" to="/">Create a GroupChat</Link>
+					<Link className="nav-link" to="creategroupchat">Create a GroupChat</Link>
 				</li>
 				<li className="nav-item" key={4}>
-					<Link className="nav-link" to="/">Find a GroupChat</Link>
+					<Link className="nav-link" to="findgroupchat">Find a GroupChat</Link>
 				</li>
 
 					{this.renderLinks()}
