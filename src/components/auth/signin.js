@@ -46,17 +46,17 @@ class Signin extends Component {
 			<h3>Enter your email and password</h3>
 			</div>
 				<fieldset className="form-group">
-					<label htmlFor="Email">Email:</label>
-					<input {...email} className="form-control" />
-				</fieldset>
-				<fieldset className="form-group">
+					<label htmlFor="Email" id="email">Email:</label>
+					<input {...email} className="form-control" placeholder="Enter E-mail" />
+
 					<label htmlFor="Password">Password:</label>
-					<input {...password} type="password" className="form-control" />
+					<input {...password} type="password" className="form-control" placeholder="Enter password"  />
+					<button action="submit" className="btn btn-primary" id="btn">
+					Sign in
+					</button>
 				</fieldset>
 				{this.renderAlert()}
-				<button action="submit" className="btn btn-primary">
-				Sign in
-				</button>
+
 			</form>
 		);
 	}

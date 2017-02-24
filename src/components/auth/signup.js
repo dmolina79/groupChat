@@ -58,10 +58,12 @@ class Signup extends Component {
 		const fieldHelper = this.props.fields[field];
 
 		return (
-			<div key={field} className={this.showFormIsValid(fieldHelper)} >
+			<div key={field} className={this.showFormIsValid(fieldHelper)} id="label1" >
+
 					<label htmlFor={fieldConfig.label}>{fieldConfig.label}</label>
 					<input type={fieldConfig.type} className="form-control" {...fieldHelper} />
 					{this.showError(fieldHelper)}
+
 			</div>
 		);
 	}
@@ -71,9 +73,15 @@ class Signup extends Component {
 
 		return (
 			<form onSubmit={handleSubmit(this.handleFormSubmit)}>
+			<div id="signUp">
+			<h1>Sign up to Group Chat</h1>
+			<h3>Enter your email and password</h3>
+			</div>
+			<fieldset className="form-group1">
 				{ _.map(FIELDS, this.renderField)}
 				{this.renderAlert()}
-				<button type="submit" className="btn btn-primary">Sign Up!</button>
+				<button type="submit" className="btn btn-primary" id="btn1">Sign Up!</button>
+				</fieldset>
 			</form>
 		);
 	}
