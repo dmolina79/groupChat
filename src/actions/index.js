@@ -4,12 +4,16 @@ import firebase, { firebaseRef } from '../firebase';
 import {
 	AUTH_USER,
 	AUTH_ERROR,
-	SIGN_OUT_USER
-
+	SIGN_OUT_USER,
+	GROUP_CREATED
 } from './types';
 
 export function getFirebaseAuth() {
 	return firebase.auth();
+}
+
+export function getFirebaseDb() {
+	return firebaseRef;
 }
 
 export function signinUser({ email, password }) {
@@ -55,7 +59,7 @@ export function authError(error) {
 
 export function verifyAuth() {
   return function (dispatch) {
-    firebase.auth().onAuthStateChanged(user => {
+    getFirebaseAuth().onAuthStateChanged(user => {
       if (user) {
         dispatch(authUser());
       } else {
@@ -67,7 +71,7 @@ export function verifyAuth() {
 
 export function signoutUser() {
 	return function (dispatch) {
-		firebase.auth().signOut()
+		getFirebaseAuth().signOut()
 			.then(() => {
 				//browserHistory.push('/');
 				dispatch({ type: SIGN_OUT_USER });
@@ -78,7 +82,24 @@ export function signoutUser() {
 		};
 }
 
-//TODO: implement firebase CRUD with Actions
+//firebase DB CRUD Actions
+
+export function createGroup(name) {
+	console.log(name);
+	return function (dispatch) {
+		getFirebaseDb().ref('/groups' + name).set({
+			name: 'name'
+		})
+			.then(() => {
+				//browserHistory.push('/');
+				dispatch({ type: GROUP_CREATED });
+			})
+			.catch(error => {
+				console.log(`error signing out. Detail ${error}`);
+			});
+		};
+}
+
 
 // export function fetchMessage() {
 // 	return function (dispatch) {

@@ -34,7 +34,7 @@ ReactDOM.render(
 			<Route path="signup" component={Signup} />
 			<Route path="findgroupchat" component={FindGroupChat} />
 			<Route path="creategroupchat" component={CreateGroupChat} />
-			<Route path="chatroom"component={ChatRoom} />
+			<Route path="chatroom"component={RequireAuth(ChatRoom)} />
 			<Route path="feature" component={RequireAuth(Feature)} />
 		</Route>
 	</Router>

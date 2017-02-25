@@ -1,0 +1,39 @@
+{
+  "groups" : {
+    "los-vatos-locos" : {
+      "name" : "Los Vatos Locos",
+      "groupies" : [
+        {
+          "name" : "John"
+        },
+        {
+          "name" : "Jack"
+        }
+      ],
+      "channels" : [
+        {
+          "name" : "gaming",
+          "chat-id" : "los-vatos-locos-gaming"
+        },
+        {
+          "name" : "programming",
+          "chat-id" : "los-vatos-locos-programming"
+        }
+      ]
+    }
+  },
+  "chats" : {
+    "los-vatos-locos-gaming" : [
+      {
+        "name" : "Jack",
+        "datetime" : "4:30pm Feb 14 2017",
+        "text" : "esta buena la foto!"
+      },
+      {
+        "name" : "John",
+        "datetime" : "4:10pm Feb 14 2017",
+        "text" : " Todo Macizo http://imgur.com/URLFOTO"
+      }
+    ]
+  }
+}
