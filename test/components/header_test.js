@@ -12,6 +12,8 @@ describe('Header Component Test', () => {
   let testComponent;
   let initialState;
 
+  //this is a comments
+
   beforeEach(() => {
     initialState = {
 			authenticated: false
