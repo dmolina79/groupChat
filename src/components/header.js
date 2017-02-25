@@ -30,7 +30,7 @@ export class Header extends Component {
 
 	render() {
 		return (
-			<nav className="navbar navbar-inverse">
+			<nav className="navbar navbar-default">
 				<Link to="/" className="navbar-brand">Welcome to Group Chat</Link>
 
 				<ul className="nav navbar-nav" id="nav1">

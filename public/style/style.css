@@ -7,17 +7,20 @@
 
 #nav1 {
 	float: right;
+	color: red;
 }
 
 #signIn {
 	margin-top: 50px;
 	text-align: center;
+
 }
 
 .form-group {
 
 	padding-left: 400px;
 	padding-right: 400px;
+
 }
 
 #email {
@@ -47,4 +50,36 @@
 }
 #GroupChat1 {
 	margin-top: 80px;
+}
+
+#img1 {
+	height: 150px;
+    width: 150px;
+		margin-right: 25px;
+}
+#welcome {
+	text-align: left;
+	color: #FFA500;
+	margin-top: 100px;
+
+}
+#welcome2 {
+	text-align: right;;
+	color: #FFA500;
+	margin-top: 100px;
+
+}
+#img3 {
+	height: 150px;
+    width: 150px;
+		margin-right: 25px;
+}
+#chatter {
+	float: right;
+}
+#chatroom {
+	float: left;
+}
+#chatterName {
+float: right;
 }
