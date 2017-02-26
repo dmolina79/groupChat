@@ -87,11 +87,18 @@ export function signoutUser() {
 //firebase DB CRUD Actions
 
 export function createGroup(name) {
-	const uid = getFirebaseAuth().currentUser.uid;
+	const { uid } = getFirebaseAuth().currentUser;
+	const defaultChannelId = name + '-default';
 	return function (dispatch) {
 		getFirebaseDb().child(`groups/${name}`).set({
 			name,
-			admin: uid
+			admin: uid,
+			channels: {
+				default: {
+					name: 'default',
+					chatId: defaultChannelId
+				}
+			}
 		})
 		.then((snapshot) => {
 				browserHistory.push('/chatroom/' + name);
