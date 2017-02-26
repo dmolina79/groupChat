@@ -28,6 +28,9 @@ store.dispatch(Actions.verifyAuth());
 ReactDOM.render(
 <Provider store={store}>
 	<Router history={browserHistory} >
+		{/* Special route for chatroom */}
+		<Route path="/chatroom/:group" component={RequireAuth(ChatRoom)} />
+		{/* index route and childs */}
 		<Route path="/" component={App} >
 			<IndexRoute component={Landing} />
 			<Route path="signin" component={Signin} />
@@ -35,11 +38,13 @@ ReactDOM.render(
 			<Route path="signup" component={Signup} />
 			<Route path="findgroupchat" component={RequireAuth(FindGroupChat)} />
 			<Route path="creategroupchat" component={RequireAuth(CreateGroupChat)} />
-			<Route path="chatroom" component={RequireAuth(ChatRoom)} />
 			<Route path="feature" component={RequireAuth(Feature)} />
 			{/* Default not found route */}
 			<Route path="*" component={NotFound} />
 		</Route>
+
+
+
 	</Router>
 </Provider>
 , document.querySelector('.container'));

@@ -94,7 +94,7 @@ export function createGroup(name) {
 			admin: uid
 		})
 		.then((snapshot) => {
-				browserHistory.push(`/chatroom?group=${name}`);
+				browserHistory.push('/chatroom/' + name);
 				dispatch({ type: GROUP_CREATED,
 									payload: snapshot
 								});
@@ -112,7 +112,7 @@ export function findGroupChat(name) {
 		.once('value')
 		.then((snapshot) => {
 			if (snapshot.hasChild(name)) {
-					browserHistory.push(`/chatroom?group=${name}`);
+					browserHistory.push('/chatroom/' + name);
 					dispatch({ type: GROUP_FOUND });
 				} else {
 					dispatch({ type: GROUP_NOT_FOUND });
