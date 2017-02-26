@@ -8,6 +8,7 @@ import * as Actions from './actions';
 
 
 import App from './components/app';
+import NotFound from './components/not_found';
 import Signin from './components/auth/signin';
 import Signout from './components/auth/signout';
 import Signup from './components/auth/signup';
@@ -36,6 +37,8 @@ ReactDOM.render(
 			<Route path="creategroupchat" component={RequireAuth(CreateGroupChat)} />
 			<Route path="chatroom" component={RequireAuth(ChatRoom)} />
 			<Route path="feature" component={RequireAuth(Feature)} />
+			{/* Default not found route */}
+			<Route path="*" component={NotFound} />
 		</Route>
 	</Router>
 </Provider>
