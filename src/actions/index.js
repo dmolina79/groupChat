@@ -6,7 +6,8 @@ import {
 	AUTH_ERROR,
 	SIGN_OUT_USER,
 	GROUP_CREATED,
-	FOUND_GROUPS
+	GROUP_FOUND,
+	GROUP_NOT_FOUND
 } from './types';
 
 export function getFirebaseAuth() {
@@ -86,13 +87,17 @@ export function signoutUser() {
 //firebase DB CRUD Actions
 
 export function createGroup(name) {
+	const uid = getFirebaseAuth().currentUser.uid;
 	return function (dispatch) {
-		getFirebaseDb().child('groups').push({
-			name
+		getFirebaseDb().child(`groups/${name}`).set({
+			name,
+			admin: uid
 		})
-		.then(() => {
-				browserHistory.push('/chatroom');
-				dispatch({ type: GROUP_CREATED });
+		.then((snapshot) => {
+				browserHistory.push(`/chatroom?group=${name}`);
+				dispatch({ type: GROUP_CREATED,
+									payload: snapshot
+								});
 			})
 			.catch(error => {
 				console.log(`error creating group. Detail ${error}`);
@@ -100,15 +105,18 @@ export function createGroup(name) {
 		};
 }
 
-export function findGroup(name) {
-	console.log(name);
+export function findGroupChat(name) {
 	return function (dispatch) {
 		getFirebaseDb()
 		.child('groups')
 		.once('value')
 		.then((snapshot) => {
-				//browserHistory.push('/');
-				dispatch({ type: FOUND_GROUPS });
+			if (snapshot.hasChild(name)) {
+					browserHistory.push(`/chatroom?group=${name}`);
+					dispatch({ type: GROUP_FOUND });
+				} else {
+					dispatch({ type: GROUP_NOT_FOUND });
+				}
 			})
 			.catch(error => {
 				console.log(`error finding group. Detail ${error}`);

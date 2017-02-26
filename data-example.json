@@ -1,6 +1,7 @@
 {
   "groups" : {
     "los-vatos-locos" : {
+      "adminId" : "user@email.com",
       "name" : "Los Vatos Locos",
       "groupies" : [
         {
