@@ -5,7 +5,8 @@ import {
 	AUTH_USER,
 	AUTH_ERROR,
 	SIGN_OUT_USER,
-	GROUP_CREATED
+	GROUP_CREATED,
+	FOUND_GROUPS
 } from './types';
 
 export function getFirebaseAuth() {
@@ -85,17 +86,32 @@ export function signoutUser() {
 //firebase DB CRUD Actions
 
 export function createGroup(name) {
-	console.log(name);
 	return function (dispatch) {
-		getFirebaseDb().ref('/groups' + name).set({
-			name: 'name'
+		getFirebaseDb().child('groups').push({
+			name
 		})
-			.then(() => {
-				//browserHistory.push('/');
+		.then(() => {
+				browserHistory.push('/chatroom');
 				dispatch({ type: GROUP_CREATED });
 			})
 			.catch(error => {
-				console.log(`error signing out. Detail ${error}`);
+				console.log(`error creating group. Detail ${error}`);
+			});
+		};
+}
+
+export function findGroup(name) {
+	console.log(name);
+	return function (dispatch) {
+		getFirebaseDb()
+		.child('groups')
+		.once('value')
+		.then((snapshot) => {
+				//browserHistory.push('/');
+				dispatch({ type: FOUND_GROUPS });
+			})
+			.catch(error => {
+				console.log(`error finding group. Detail ${error}`);
 			});
 		};
 }

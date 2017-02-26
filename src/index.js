@@ -15,9 +15,9 @@ import Feature from './components/feature';
 import RequireAuth from './components/auth/require_auth';
 import Landing from './components/landing';
 import reducers from './reducers';
-import FindGroupChat from './components/findgroupchat'
-import CreateGroupChat from './components/creategroupchat'
-import ChatRoom from './components/chatroom'
+import FindGroupChat from './components/findgroupchat';
+import CreateGroupChat from './components/creategroupchat';
+import ChatRoom from './components/chatroom';
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 const store = createStoreWithMiddleware(reducers);
@@ -32,9 +32,9 @@ ReactDOM.render(
 			<Route path="signin" component={Signin} />
 			<Route path="signout" component={Signout} />
 			<Route path="signup" component={Signup} />
-			<Route path="findgroupchat" component={FindGroupChat} />
-			<Route path="creategroupchat" component={CreateGroupChat} />
-			<Route path="chatroom"component={RequireAuth(ChatRoom)} />
+			<Route path="findgroupchat" component={RequireAuth(FindGroupChat)} />
+			<Route path="creategroupchat" component={RequireAuth(CreateGroupChat)} />
+			<Route path="chatroom" component={RequireAuth(ChatRoom)} />
 			<Route path="feature" component={RequireAuth(Feature)} />
 		</Route>
 	</Router>

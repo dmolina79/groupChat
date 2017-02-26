@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import Chatter from './chatter';
 
-
-
-class ChatRoom extends Component{
+class ChatRoom extends Component {
   render() {
     return (
       <div>
@@ -15,12 +13,12 @@ class ChatRoom extends Component{
           Channels
         </div>
       <div className="panel-channel">
-      <ul class="list-group">
-  <li class="list-group-item">Gaming</li>
-  <li class="list-group-item">Poker</li>
-  <li class="list-group-item">Programming</li>
-  <li class="list-group-item">JavaScript</li>
-  <li class="list-group-item">Movies</li>
+      <ul className="list-group">
+      <li className="list-group-item">Gaming</li>
+      <li className="list-group-item">Poker</li>
+      <li className="list-group-item">Programming</li>
+      <li className="list-group-item">JavaScript</li>
+      <li className="list-group-item">Movies</li>
 </ul>
 
       </div>
@@ -28,11 +26,11 @@ class ChatRoom extends Component{
       participants
       </div>
     <div className="panel-channel">
-    <ul class="list-group">
-<li class="list-group-item">John</li>
-<li class="list-group-item">Tim</li>
-<li class="list-group-item">Charlie</li>
-<li class="list-group-item">Tom</li>
+    <ul className="list-group">
+<li className="list-group-item">John</li>
+<li className="list-group-item">Tim</li>
+<li className="list-group-item">Charlie</li>
+<li className="list-group-item">Tom</li>
 </ul>
 
     </div>
@@ -47,9 +45,6 @@ class ChatRoom extends Component{
 
       </div>
 <Chatter />
-
-
-
       </div>
     );
   }
