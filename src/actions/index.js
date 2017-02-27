@@ -5,7 +5,9 @@ import {
 	AUTH_USER,
 	AUTH_ERROR,
 	SIGN_OUT_USER,
-	GROUP_CREATED
+	GROUP_CREATED,
+	GROUP_FOUND,
+	GROUP_NOT_FOUND
 } from './types';
 
 export function getFirebaseAuth() {
@@ -85,17 +87,46 @@ export function signoutUser() {
 //firebase DB CRUD Actions
 
 export function createGroup(name) {
-	console.log(name);
+	const { uid } = getFirebaseAuth().currentUser;
+	const defaultChannelId = name + '-default';
 	return function (dispatch) {
-		getFirebaseDb().ref('/groups' + name).set({
-			name: 'name'
+		getFirebaseDb().child(`groups/${name}`).set({
+			name,
+			admin: uid,
+			channels: {
+				default: {
+					name: 'default',
+					chatId: defaultChannelId
+				}
+			}
 		})
-			.then(() => {
-				//browserHistory.push('/');
-				dispatch({ type: GROUP_CREATED });
+		.then((snapshot) => {
+				browserHistory.push('/chatroom/' + name);
+				dispatch({ type: GROUP_CREATED,
+									payload: snapshot
+								});
 			})
 			.catch(error => {
-				console.log(`error signing out. Detail ${error}`);
+				console.log(`error creating group. Detail ${error}`);
+			});
+		};
+}
+
+export function findGroupChat(name) {
+	return function (dispatch) {
+		getFirebaseDb()
+		.child('groups')
+		.once('value')
+		.then((snapshot) => {
+			if (snapshot.hasChild(name)) {
+					browserHistory.push('/chatroom/' + name);
+					dispatch({ type: GROUP_FOUND });
+				} else {
+					dispatch({ type: GROUP_NOT_FOUND });
+				}
+			})
+			.catch(error => {
+				console.log(`error finding group. Detail ${error}`);
 			});
 		};
 }
