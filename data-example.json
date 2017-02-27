@@ -1,7 +1,7 @@
 {
   "groups" : {
     "los-vatos-locos" : {
-      "adminId" : "user@email.com",
+      "admin" : "IDDEUSERENFIREBASE",
       "name" : "Los Vatos Locos",
       "groupies" : [
         {
@@ -11,20 +11,14 @@
           "name" : "Jack"
         }
       ],
-      "channels" : [
-        {
-          "name" : "gaming",
-          "chat-id" : "los-vatos-locos-gaming"
-        },
-        {
-          "name" : "programming",
-          "chat-id" : "los-vatos-locos-programming"
+      "channels" : {
+          "default" : {
+            "chatId" : "los-vatos-locos-default"
+          }
         }
-      ]
-    }
   },
   "chats" : {
-    "los-vatos-locos-gaming" : [
+    "los-vatos-locos-default" : [
       {
         "name" : "Jack",
         "datetime" : "4:30pm Feb 14 2017",
