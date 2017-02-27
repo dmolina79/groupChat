@@ -7,7 +7,7 @@ class Chatter extends Component{
     return (
       <div>
 
-
+<form action="">
       <div className="panel panel-default" id="chatter">
 
         <div className="chatHeader">
@@ -15,13 +15,15 @@ class Chatter extends Component{
         </div>
 
         <div className="chatMessage"></div>
+        <textarea id="menssge"></textarea>
 
         <div className="chatBottom">
+
         <input type="text" className="form-control" placeholder="Message" aria-describedby="sizing-addon1"  id="chatterName"/>
         </div>
 
         </div>
-
+</form>
 
       </div>
     );
