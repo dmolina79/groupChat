@@ -13,7 +13,7 @@ class Landing extends Component {
      things done.
     <img alt="img" src="img/img3.jpg" id="img3" /></h1>
     </div>
-<Chatter />
+
 
       </div>
     );
