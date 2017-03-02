@@ -1,40 +1,105 @@
 import React, { Component } from 'react';
 
+class Chatter extends Component {
+constructor() {
+  super();
+  this.state = { name: 'will' };
+}
 
-
-class Chatter extends Component{
-  render() {
+render() {
     return (
       <div>
+      <ol>
+      <p>{this.state.name}</p>
+      </ol>
 
-      <form action="">
-      <div id ="name_prompt">
-        <p className="title">hola </p>
+      <input type="text" placeholder="Message" />
+      <button>Submit Message</button>
 
-        <input type="text" id="name" className="form-control" />
-        <button className="btn-btn-success">Submit</button>
-        </div>
-      </form>
-
-      </div>
+</div>
     );
   }
 }
+
 export default Chatter;
 //
 //
-// <div className="panel panel-default" id="chatter">
+// import React, { Component } from 'react';
 //
-//   <div className="chatHeader">
-//   <h1 id="chatterName">Gamming</h1>
-//   </div>
+// class Chatter extends Component {
 //
-//   <div className="chatMessage"></div>
-//   <textarea id="menssge"></textarea>
+//   constructor(props, context) {
+//     super(props, context);
+//     //bind my methods
+//     this.updateMessage = this.updateMessage.bind(this);
+//     this.submitMessage = this.submitMessage.bind(this);
+// console.log('llamando al constructor');
+// //init state
+//     this.state = {
+//       messages: ['hola pamela']
 //
-//   <div className="chatBottom">
+//     };
+//   }
 //
-//   <input type="text" className="form-control" placeholder="Message" aria-describedby="sizing-addon1"  id="chatterName"/>
-//   </div>
+// componentWillMount() {
+//   console.log('compenen will mount');
+// }
 //
-//   </div>
+//   componentDidMount() {
+//     console.log('componentDidMount');
+//     firebase.database().ref('messages/').on('value', (snapshot) => {
+//       const currentMessages = snapshot.val();
+//
+//       if (currentMessages != null) {
+//         this.setState({
+//           messages: currentMessages
+//         });
+//       }
+//     });
+//   }
+// updateMessage(event) {
+//   console.log('updateMessage:' + event.target.value);
+//   this.setState({
+//     message: event.target.value
+//   });
+// }
+// submitMessage(event) {
+//   console.log('submitMessage: ' + this.state.message);
+//   const nextMessage = {
+//     id: this.state.messages.length,
+//     text: this.state.message
+//   };
+//
+//   // firebase.database().ref('messages/'+nextMessage.id).set(nextMessage)
+//   const list = Object.assign([], this.state.messages);
+//   list.push(nextMessage);
+//   this.setState({
+//     messages: list
+//   });
+// // }
+// }
+//
+//   render() {
+//     console.log('Render');
+//     const currentMessage = this.state.messages.map((message, i) => {
+//
+//       return (
+//
+//         <p key={message.id}>{message.text}</p>
+//       );
+//     });
+//     return (
+//       <div>
+//       <ol>
+//         <li>{currentMessage}</li>
+//       </ol>
+//
+//       <input onChange={this.updateMessage} type="text" placeholder="Message" />
+//       <button onClick={this.submitMessage}>Submit Message</button>
+//
+// </div>
+//     );
+//   }
+// }
+//
+// export default Chatter;

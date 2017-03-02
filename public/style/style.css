@@ -74,12 +74,18 @@
     width: 150px;
 		margin-right: 25px;
 }
-#chatter {
-	float: right;
-}
+
 #chatroom {
 	float: left;
 }
-#chatterName {
-float: right;
+
+
+
+
+#name_prompt {
+	background-color: red;
+	box-shadow: 0 0 5px #d1d1d1;
+	margin: 20px;
+	padding: 20px;
+
 }

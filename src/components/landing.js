@@ -1,20 +1,19 @@
 import React, { Component } from 'react';
+import Chatter from './chatter';
 
-
-
-class Landing extends Component{
+class Landing extends Component {
   render() {
     return (
       <div>
       <div>
 
-    <h1 id="welcome"><img src="img/img2.jpg" id="img1" >Welcome to a Group Chat</img></h1>
-    <h1 className="animated fadeInDown" id="welcome2">GroupChat brings all the pieces and people you need together so you can actually get things done.<img src="img/img3.jpg" id="img3" ></img></h1>
-
-
-
+    <h1 id="welcome"><img alt="img" src="img/img2.jpg" id="img1" >Welcome to a Group Chat</img></h1>
+    <h1 className="animated fadeInDown" id="welcome2">
+    GroupChat brings all the pieces and people you need together so you can actually get
+     things done.
+    <img alt="img" src="img/img3.jpg" id="img3" /></h1>
     </div>
-
+<Chatter />
 
       </div>
     );
