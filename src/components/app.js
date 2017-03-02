@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import Header from './header';
 
 
@@ -8,7 +7,7 @@ export default class App extends Component {
     return (
       <div>
         <Header />
-        {this.props.children} 
+        {this.props.children}
       </div>
     );
   }
