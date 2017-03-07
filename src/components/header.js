@@ -6,7 +6,7 @@ export class Header extends Component {
 	renderLinks() {
 		const authenticated = this.props.authenticated;
 		let links = [];
-		
+
 		if (authenticated) {
 			links = ([
 
@@ -16,7 +16,7 @@ export class Header extends Component {
 				<li className="nav-item" key={4}>
 					<Link className="nav-link" to="findgroupchat">Find a GroupChat</Link>
 				</li>,
-				<li className="nav-item" >
+				<li className="nav-item" key={5}>
 					<Link className="nav-link" to="/signout">Sign Out</Link>
 				</li>
 			]);
