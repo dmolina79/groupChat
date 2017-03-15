@@ -1,4 +1,9 @@
 
+.nav11 {
+	background-color: red;
+}
+
+
 
 #navbarNavAltMarkup {
 
@@ -93,4 +98,8 @@
 .sidenav {
 	width: 250px;
 	height: 100%;
+}
+
+.chatterBoard {
+	float: none;
 }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Chatter from './chatter';
+
 
 class Landing extends Component {
   render() {

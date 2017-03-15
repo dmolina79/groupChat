@@ -63,7 +63,7 @@ class Chatter extends Component {
       );
     });
     return (
-      <div>
+      <div className="chatterBoard">
       <ol>
         <li>{currentMessage}</li>
       </ol>
