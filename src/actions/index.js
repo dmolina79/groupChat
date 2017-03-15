@@ -1,5 +1,7 @@
 import { browserHistory } from 'react-router';
+import _ from 'lodash';
 import firebase, { firebaseRef } from '../firebase';
+
 
 import {
 	AUTH_USER,
@@ -99,6 +101,7 @@ export function signoutUser() {
 export function createGroup(name) {
 	const { uid } = getFirebaseAuth().currentUser;
 	const defaultChannelId = `${name}-default`;
+	const commonChannelId = `${name}-common`;
 	return function (dispatch) {
 		getFirebaseDb().child(`entities/groups/${name}`).set({
 			name,
@@ -107,6 +110,10 @@ export function createGroup(name) {
 				default: {
 					name: 'default',
 					chatId: defaultChannelId
+				},
+				common: {
+					name: 'common',
+					chatId: commonChannelId
 				}
 			}
 		})
@@ -140,11 +147,22 @@ export function findGroupChat(name) {
 			});
 		};
 }
+//This function should map the Firebase snapshot to
+//the groupInfo object and what data we want to load into
+//the component
+export function groupChatLoaded(groupSnapShot, chatInfo) {
+	//our object to store the chatRoom info
+	const channels = groupSnapShot.child('channels').val();
 
-export function groupChatLoaded(groupInfo, chatInfo) {
+	const chatGroupInfo = {
+		name: groupSnapShot.key,
+		channels: _.keys(channels),
+		//groupies: ['Douglas', 'Pamela', 'Alex', 'Gabriel']
+	};
+
 	return {
 		type: CHAT_LOADED,
-		payload: { groupInfo, chatInfo }
+		payload: { chatGroupInfo, chatInfo }
 	};
 }
 

@@ -11,7 +11,7 @@ class ChatRoom extends Component {
   }
 
   componentWillMount() {
-    this.props.fetchGroupChat('nena');
+    this.props.fetchGroupChat(this.props.params.group);
   }
 
   renderLoadingMsg() {
@@ -21,12 +21,14 @@ class ChatRoom extends Component {
   }
 
   render() {
+    const { name, channels } = this.props.chatGroupInfo;
+    const groupChatLabel = `Group Chat: ${name}`;
     return (
       <div>
         {this.renderLoadingMsg()}
         <ChatSidenav
-          name="Mi grupo de chat"
-          channels={['default']}
+          name={groupChatLabel}
+          channels={channels}
           groupies={['Douglas', 'Pamela', 'Alex', 'Gabriel']}
         />
         { /*<Chatter /> */ }
@@ -36,8 +38,8 @@ class ChatRoom extends Component {
 }
 
 const mapStateToProps = ({ chatRoom }) => {
-  const { loading } = chatRoom;
-  return { loading };
+  const { loading, chatGroupInfo } = chatRoom;
+  return { loading, chatGroupInfo };
 };
 
 export default connect(mapStateToProps, actions)(ChatRoom);
