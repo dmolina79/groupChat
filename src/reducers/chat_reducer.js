@@ -6,7 +6,7 @@ import
 
 const INITIAL_STATE = {
   loading: true,
-  chatGroupInfo: {
+  groupChatInfo: {
     name: '',
     channels: []
   }
@@ -17,8 +17,8 @@ export default function (state = INITIAL_STATE, action) {
     case CHAT_LOADING:
       return { ...state, loading: true };
     case CHAT_LOADED: {
-      const { chatGroupInfo } = action.payload;
-      return { ...state, loading: false, chatGroupInfo };
+      const { groupChatInfo } = action.payload;
+      return { ...state, loading: false, groupChatInfo };
     }
 		default:
       return state;

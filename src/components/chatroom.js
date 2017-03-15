@@ -11,7 +11,7 @@ class ChatRoom extends Component {
   }
 
   componentWillMount() {
-    this.props.fetchGroupChat(this.props.params.group);
+    this.props.fetchGroupChatInfo(this.props.params.group);
   }
 
   renderLoadingMsg() {
@@ -21,7 +21,7 @@ class ChatRoom extends Component {
   }
 
   render() {
-    const { name, channels } = this.props.chatGroupInfo;
+    const { name, channels } = this.props.groupChatInfo;
     const groupChatLabel = `Group Chat: ${name}`;
     return (
       <div>
@@ -38,8 +38,8 @@ class ChatRoom extends Component {
 }
 
 const mapStateToProps = ({ chatRoom }) => {
-  const { loading, chatGroupInfo } = chatRoom;
-  return { loading, chatGroupInfo };
+  const { loading, groupChatInfo } = chatRoom;
+  return { loading, groupChatInfo };
 };
 
 export default connect(mapStateToProps, actions)(ChatRoom);

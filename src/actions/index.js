@@ -154,7 +154,7 @@ export function groupChatLoaded(groupSnapShot, chatInfo) {
 	//our object to store the chatRoom info
 	const channels = groupSnapShot.child('channels').val();
 
-	const chatGroupInfo = {
+	const groupChatInfo = {
 		name: groupSnapShot.key,
 		channels: _.keys(channels),
 		//groupies: ['Douglas', 'Pamela', 'Alex', 'Gabriel']
@@ -162,7 +162,7 @@ export function groupChatLoaded(groupSnapShot, chatInfo) {
 
 	return {
 		type: CHAT_LOADED,
-		payload: { chatGroupInfo, chatInfo }
+		payload: { groupChatInfo, chatInfo }
 	};
 }
 
@@ -173,7 +173,7 @@ export function groupChatLoadFailed(error) {
 	};
 }
 
-export function fetchGroupChat(name) {
+export function fetchGroupChatInfo(name) {
 	const groupChat = `entities/groups/${name}`;
 	console.log(groupChat);
 
