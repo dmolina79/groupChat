@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react';
 
+
 class Chatter extends Component {
   constructor(props, context) {
     super(props, context);
@@ -15,22 +16,6 @@ class Chatter extends Component {
     };
   }
 
-  componentWillMount() {
-  console.log('compenen will mount');
-  }
-
-  componentDidMount() {
-    console.log('componentDidMount');
-    firebase.database().ref('messages/').on('value', (snapshot) => {
-      const currentMessages = snapshot.val();
-
-      if (currentMessages != null) {
-        this.setState({
-          messages: currentMessages
-        });
-      }
-    });
-  }
   updateMessage(event) {
   console.log('updateMessage:' + event.target.value);
   this.setState({
@@ -44,18 +29,16 @@ class Chatter extends Component {
     text: this.state.message
   };
 
-  // firebase.database().ref('messages/'+nextMessage.id).set(nextMessage)
+
   const list = Object.assign([], this.state.messages);
   list.push(nextMessage);
   this.setState({
     messages: list
   });
-  // }
   }
 
   render() {
-    console.log('Render');
-    const currentMessage = this.state.messages.map((message, i) => {
+      const currentMessage = this.state.messages.map((message, i) => {
 
       return (
 
@@ -63,15 +46,17 @@ class Chatter extends Component {
       );
     });
     return (
-      <div className="chatterBoard">
-      <ol>
-        <li>{currentMessage}</li>
-      </ol>
+      <div>
 
+      <div className="Jumbotron">
+      <p>{currentMessage}</p>
+      </div>
       <input onChange={this.updateMessage} type="text" placeholder="Message" />
       <button onClick={this.submitMessage}>Submit Message</button>
 
-  </div>
+      </div>
+
+
     );
   }
   }

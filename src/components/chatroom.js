@@ -24,14 +24,20 @@ class ChatRoom extends Component {
     const { name, channels } = this.props.groupChatInfo;
     const groupChatLabel = `Group Chat: ${name}`;
     return (
-      <div>
+
+
+    <div>
+
         {this.renderLoadingMsg()}
         <ChatSidenav
           name={groupChatLabel}
           channels={channels}
           groupies={['Douglas', 'Pamela', 'Alex', 'Gabriel']}
         />
-        { /*<Chatter /> */ }
+
+        { <Chatter /> }
+
+
       </div>
     );
   }
