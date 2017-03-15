@@ -1,10 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 
-class Landing extends Component {
-  render() {
-    return (
-      <div>
+const Landing = () => {
+      return (
         <div>
           <h1 id="welcome">
             <img alt="img" src="img/img2.jpg" id="img1" />
@@ -16,8 +14,7 @@ class Landing extends Component {
             <img alt="img" src="img/img3.jpg" id="img3" />
           </h1>
         </div>
-      </div>
-    );
-  }
-}
+      );
+};
+
 export default Landing;
