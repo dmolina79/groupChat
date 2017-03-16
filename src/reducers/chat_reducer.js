@@ -8,17 +8,18 @@ const INITIAL_STATE = {
   loading: true,
   groupChatInfo: {
     name: '',
-    channels: []
+    channels: [],
+    selectedChannel: 'default'
   }
 };
 
 export default function (state = INITIAL_STATE, action) {
 	switch (action.type) {
     case CHAT_LOADING:
-      return { ...state, loading: true };
+      return { ...state, ...INITIAL_STATE, loading: true };
     case CHAT_LOADED: {
       const { groupChatInfo } = action.payload;
-      return { ...state, loading: false, groupChatInfo };
+      return { ...state, ...INITIAL_STATE, loading: false, groupChatInfo };
     }
 		default:
       return state;

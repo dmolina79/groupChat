@@ -36,7 +36,7 @@ class ChatRoom extends Component {
   }
 
   render() {
-    const { name, channels } = this.props.groupChatInfo;
+    const { name, channels, selectedChannel } = this.props.groupChatInfo;
     const { user } = this.props;
 
     return (
@@ -46,6 +46,7 @@ class ChatRoom extends Component {
 
         <div>
           <ChatSidenav
+           selectedChannel={selectedChannel} 
            name={name}
            channels={channels}
            groupies={['Douglas', 'Pamela', 'Alex', 'Gabriel']}
