@@ -200,6 +200,7 @@ export function groupChatLoaded(groupSnapShot, chatInfo) {
 	const groupChatInfo = {
 		name: groupSnapShot.key,
 		channels: _.keys(channels),
+		selectedChannel: 'default'
 		//groupies: ['Douglas', 'Pamela', 'Alex', 'Gabriel']
 	};
 

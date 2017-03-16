@@ -1,12 +1,27 @@
 import React, { Component } from 'react';
 
-export default class ListGroup extends Component {  
+export default class ListGroup extends Component {
+  constructor(props) {
+    super(props);
+    this.isItemActive = this.isItemActive.bind(this);
+  }
+
+  isItemActive(item) {
+    let result;
+    if (this.props.selectedItem === item) {
+      result = 'list-group-item active';
+    } else {
+      result = 'list-group-item';
+    }
+    return result;
+  }
+
   renderList() {
     let toRender;
     if (this.props.selectable) {
       toRender = this.props.list.map((item) => {
         return (
-          <button type="button" key={item} className="list-group-item">{item}</button>
+          <button type="button" key={item} className={this.isItemActive(item)}>{item}</button>
         );
       });
     } else {

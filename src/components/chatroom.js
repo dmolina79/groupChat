@@ -46,7 +46,7 @@ class ChatRoom extends Component {
 
         <div>
           <ChatSidenav
-           selectedChannel={selectedChannel} 
+           selectedChannel={selectedChannel}
            name={name}
            channels={channels}
            groupies={['Douglas', 'Pamela', 'Alex', 'Gabriel']}
