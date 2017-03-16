@@ -38,10 +38,8 @@ class ChatRoom extends Component {
     console.log('messages ', messages);
     return (
 
-      <div className='chatRoomContainer'>
+      <div id='chatRoomContainer'>
         {this.renderLoadingMsg()}
-
-        <div>
           <ChatSidenav
            selectedChannel={selectedChannel}
            name={name}
@@ -53,8 +51,6 @@ class ChatRoom extends Component {
             messages={messages}
             sendHandler={this.sendHandler}
           />
-
-        </div>
         { /*<ChatterToolBar /> */ }
       </div>
     );

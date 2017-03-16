@@ -1,3 +1,19 @@
+#chatRoomContainer {
+	width:100%;
+}
+
+.sidenav {
+	float:left;
+	width: 250px;
+	height: 100%;
+}
+
+#chatFeed {
+	display: inline-block;
+  margin:0 auto;
+  width: 500px;
+	padding: 14px;
+}
 
 .nav11 {
 	background-color: red;
@@ -95,10 +111,7 @@
 
 }
 
-.sidenav {
-	width: 250px;
-	height: 100%;
-}
+
 
 
 .current-chat {
