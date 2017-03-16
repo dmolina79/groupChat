@@ -1,18 +1,24 @@
 #chatRoomContainer {
 	width:100%;
+	padding: 0px 5px;
 }
 
+
 .sidenav {
-	float:left;
+	float: left;
 	width: 250px;
 	height: 100%;
+	margin-right: 30px;
+	margin-left : 5px;
 }
 
 #chatFeed {
 	display: inline-block;
   margin:0 auto;
-  width: 500px;
+  width: 800px;
 	padding: 14px;
+	/*border-style: ridge;*/
+	border-width: 2px;
 }
 
 .nav11 {
