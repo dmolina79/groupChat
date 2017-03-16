@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
+
 export class Header extends Component {
 	renderLinks() {
 		const authenticated = this.props.authenticated;
@@ -9,7 +10,6 @@ export class Header extends Component {
 
 		if (authenticated) {
 			links = ([
-
 				<li className="nav-item" key={3}>
 					<Link className="nav-link" to="creategroupchat">Create a GroupChat</Link>
 				</li>,
@@ -23,12 +23,15 @@ export class Header extends Component {
 		} else {
 			//show sign in and sign up links
 			links = ([
+
 				<li className="nav-item" key={1}>
 					<Link className="nav-link" to="/signin">Sign In</Link>
 				</li>,
 				<li className="nav-item" key={2}>
 					<Link className="nav-link" to="/signup">Sign Up</Link>
 				</li>
+
+
 			]);
 		}
 
@@ -37,6 +40,7 @@ export class Header extends Component {
 
 	render() {
 		return (
+
 			<nav className="navbar navbar-default">
 				<Link to="/" className="navbar-brand">Welcome to Group Chat</Link>
 
@@ -45,6 +49,7 @@ export class Header extends Component {
 				</ul>
 
 			</nav>
+
 		);
 	}
 }

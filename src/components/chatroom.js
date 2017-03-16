@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
-import Chatter from './chatter';
+
+import ChatterToolBar from './chattertoolbar';
 
 import ChatSidenav from './chat-sidenav';
 import ChatFeed from './chat-feed';
@@ -39,8 +40,10 @@ class ChatRoom extends Component {
     const { user } = this.props;
 
     return (
+
       <div className='chatRoomContainer'>
         {this.renderLoadingMsg()}
+
         <div>
           <ChatSidenav
            name={name}
@@ -52,7 +55,9 @@ class ChatRoom extends Component {
             messages={this.state.messages}
             sendHandler={this.sendHandler}
           />
+
         </div>
+        { /*<ChatterToolBar /> */ }
       </div>
     );
   }
