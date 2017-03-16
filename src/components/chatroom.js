@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
-import Chatter from './chatter';
+import ChatterToolBar from './chattertoolbar';
 import ChatSidenav from './chat-sidenav';
 
 class ChatRoom extends Component {
@@ -35,7 +35,7 @@ class ChatRoom extends Component {
           groupies={['Douglas', 'Pamela', 'Alex', 'Gabriel']}
         />
 
-        { <Chatter /> }
+        { <ChatterToolBar /> }
 
 
       </div>

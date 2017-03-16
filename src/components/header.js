@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import { Nav, Navbar, NavItem, Breadcrumb } from 'react-bootstrap';
+
 
 export class Header extends Component {
 	renderLinks() {
@@ -10,30 +10,26 @@ export class Header extends Component {
 
 		if (authenticated) {
 			links = ([
-				<Nav>
-
-				<NavItem eventKey={3}><Link className="nav-link" to="creategroupchat">
-				Create a GroupChat</Link></NavItem>
-				<NavItem eventKey={4}><Link className="nav-link" to="findgroupchat">
-				Find a GroupChat</Link></NavItem>
-				<NavItem eventKey={5}><Link className="nav-link" to="/signout">
-				Sign Out</Link></NavItem>
-
-				</Nav>
-//
+				<li className="nav-item" key={3}>
+					<Link className="nav-link" to="creategroupchat">Create a GroupChat</Link>
+				</li>,
+				<li className="nav-item" key={4}>
+					<Link className="nav-link" to="findgroupchat">Find a GroupChat</Link>
+				</li>,
+				<li className="nav-item" key={5}>
+					<Link className="nav-link" to="/signout">Sign Out</Link>
+				</li>
 			]);
 		} else {
 			//show sign in and sign up links
 			links = ([
 
-				<Breadcrumb>
-				<Breadcrumb.Item><Link className="nav-link" to="/signin">Sign In</Link>
-				</Breadcrumb.Item>
-
-				<Breadcrumb.Item>
-				<Link className="nav-link" to="/signup">Sign Up</Link>
-				</Breadcrumb.Item>
-				</Breadcrumb>
+				<li className="nav-item" key={1}>
+					<Link className="nav-link" to="/signin">Sign In</Link>
+				</li>,
+				<li className="nav-item" key={2}>
+					<Link className="nav-link" to="/signup">Sign Up</Link>
+				</li>
 
 
 			]);
@@ -45,18 +41,14 @@ export class Header extends Component {
 	render() {
 		return (
 
-			<Navbar>
-			<Navbar.Header>
-			<Navbar.Brand>
-			<Link to="/">Welcome to Group Chat</Link>
+			<nav className="navbar navbar-default">
+				<Link to="/" className="navbar-brand">Welcome to Group Chat</Link>
 
-      </Navbar.Brand>
-    </Navbar.Header>
+				<ul className="nav navbar-nav" id="nav1">
+					{this.renderLinks()}
+				</ul>
 
-<Nav pullRight>
-		{this.renderLinks()}
-</Nav>
-		</Navbar>
+			</nav>
 
 		);
 	}
