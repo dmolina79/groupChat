@@ -23,13 +23,14 @@ export function getFirebaseDb() {
 	return firebaseRef;
 }
 
+
 export function signinUser({ email, password }) {
 	return function (dispatch) {
 		//submit email/password to server
 		getFirebaseAuth().signInWithEmailAndPassword(email, password)
    // ==PROMISE
-      .then(() => {
-        dispatch(authUser());
+      .then((user) => {
+        dispatch(authUser({ email: user.email }));
         browserHistory.push('/');
       })
       .catch(error => {
@@ -41,8 +42,8 @@ export function signinUser({ email, password }) {
 export function signupUser({ email, password }) {
 	return function (dispatch) {
     getFirebaseAuth().createUserWithEmailAndPassword(email, password)
-      .then(() => {
-        dispatch(authUser());
+      .then((user) => {
+        dispatch(authUser({ email: user.email }));
         browserHistory.push('/');
       })
       .catch(error => {
@@ -52,9 +53,10 @@ export function signupUser({ email, password }) {
   };
 }
 
-export function authUser() {
+export function authUser(user) {
   return {
-    type: AUTH_USER
+    type: AUTH_USER,
+		payload: user
   };
 }
 
@@ -75,7 +77,7 @@ export function verifyAuth() {
   return function (dispatch) {
     getFirebaseAuth().onAuthStateChanged(user => {
       if (user) {
-        dispatch(authUser());
+        dispatch(authUser({ email: user.email }));
       } else {
         dispatch(signoutUser());
       }
@@ -134,6 +136,7 @@ export function findGroupChat(name) {
 		getFirebaseDb()
 		.child('entities/groups')
 		.once('value')
+		//promise-> then = success | catch = fail
 		.then((snapshot) => {
 			if (snapshot.hasChild(name)) {
 					browserHistory.push(`/chatroom/${name}`);

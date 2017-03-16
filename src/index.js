@@ -28,7 +28,7 @@ ReactDOM.render(
 <Provider store={store}>
 	<Router history={browserHistory} >
 		{/* Special route for chatroom */}
-		<Route path="/chatroom/:group" component={RequireAuth(ChatRoom)} />
+		<Route path="/chatroom/:group" component={ChatRoom} />
 		{/* index route and childs */}
 		<Route path="/" component={App} >
 			<IndexRoute component={Landing} />

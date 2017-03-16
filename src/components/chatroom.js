@@ -19,6 +19,7 @@ class ChatRoom extends Component {
 
   componentWillMount() {
     this.props.fetchGroupChatInfo(this.props.params.group);
+    console.log('user: ', this.props.user);
   }
 
   sendHandler(message) {
@@ -35,9 +36,10 @@ class ChatRoom extends Component {
 
   render() {
     const { name, channels } = this.props.groupChatInfo;
+    const { user } = this.props;
 
     return (
-      <div>
+      <div className='chatRoomContainer'>
         {this.renderLoadingMsg()}
         <div>
           <ChatSidenav
@@ -46,6 +48,7 @@ class ChatRoom extends Component {
            groupies={['Douglas', 'Pamela', 'Alex', 'Gabriel']}
           />
           <ChatFeed
+            user={user}
             messages={this.state.messages}
             sendHandler={this.sendHandler}
           />
@@ -55,9 +58,9 @@ class ChatRoom extends Component {
   }
 }
 
-const mapStateToProps = ({ chatRoom }) => {
+const mapStateToProps = ({ auth, chatRoom }) => {
   const { loading, groupChatInfo } = chatRoom;
-  return { loading, groupChatInfo };
+  return { loading, groupChatInfo, user: auth.user };
 };
 
 

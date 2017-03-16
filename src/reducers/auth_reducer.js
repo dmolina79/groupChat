@@ -4,16 +4,21 @@ import
   AUTH_ERROR
 } from '../actions/types';
 
-export default function (state = {}, action) {
+const INITIAL_STATE = {
+  authenticated: false,
+  user: undefined,
+  error: undefined
+};
+
+export default function (state = INITIAL_STATE, action) {
 	switch (action.type) {
 		case AUTH_USER:
-			return { ...state, authenticated: true };
+			return { ...state, user: action.payload, authenticated: true };
 		case SIGN_OUT_USER:
-			return { ...state, authenticated: false };
+			return { ...state, ...INITIAL_STATE };
 		case AUTH_ERROR:
-			return { ...state, error: action.payload };
-
+			return { ...state, ...INITIAL_STATE, error: action.payload };
+    default:
+      return state;
 	}
-
-	return state;
 }

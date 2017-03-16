@@ -9,7 +9,10 @@ export default class ChatFeed extends Component {
       <div>
         <h3>CHAT</h3>
         <ChatMessages messages={this.props.messages} />
-        <ChatInput onSend={this.props.sendHandler} />
+        <ChatInput 
+          user={this.props.user}
+          onSend={this.props.sendHandler}
+        />
       </div>
     );
   }

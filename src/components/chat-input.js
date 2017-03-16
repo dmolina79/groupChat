@@ -15,7 +15,7 @@ export default class ChatInput extends Component {
   submitHandler(event) {
     event.preventDefault();
     const message = {
-      username: 'Me',
+      username: this.props.user.email,
       message: this.state.chatInput
     };
     this.props.onSend(message);
