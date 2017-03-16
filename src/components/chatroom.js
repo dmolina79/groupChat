@@ -1,17 +1,31 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
+
 import ChatterToolBar from './chattertoolbar';
+
 import ChatSidenav from './chat-sidenav';
+import ChatFeed from './chat-feed';
 
 class ChatRoom extends Component {
   constructor(props) {
     super(props);
-    //bindings
+    this.state = {
+      messages: [{ username: 'Gabriel', message: 'hola' },
+                 { username: 'Douglas', message: 'q ondas' }]
+    };
+
+    this.sendHandler = this.sendHandler.bind(this);
   }
 
   componentWillMount() {
     this.props.fetchGroupChatInfo(this.props.params.group);
+  }
+
+  sendHandler(message) {
+    const messages = this.state.messages;
+    messages.push(message);
+    this.setState({ messages });
   }
 
   renderLoadingMsg() {
@@ -22,22 +36,27 @@ class ChatRoom extends Component {
 
   render() {
     const { name, channels } = this.props.groupChatInfo;
-    const groupChatLabel = `Group Chat: ${name}`;
+
     return (
 
 
     <div>
 
         {this.renderLoadingMsg()}
-        <ChatSidenav
-          name={groupChatLabel}
-          channels={channels}
-          groupies={['Douglas', 'Pamela', 'Alex', 'Gabriel']}
-        />
 
-        { <ChatterToolBar /> }
+        <div>
+          <ChatSidenav
+           name={name}
+           channels={channels}
+           groupies={['Douglas', 'Pamela', 'Alex', 'Gabriel']}
+          />
+          <ChatFeed
+            messages={this.state.messages}
+            sendHandler={this.sendHandler}
+          />
 
-
+        </div>
+  { <ChatterToolBar /> }
       </div>
     );
   }
@@ -47,5 +66,6 @@ const mapStateToProps = ({ chatRoom }) => {
   const { loading, groupChatInfo } = chatRoom;
   return { loading, groupChatInfo };
 };
+
 
 export default connect(mapStateToProps, actions)(ChatRoom);
