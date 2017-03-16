@@ -190,18 +190,20 @@ export function findGroupChat(name) {
 //This function should map the Firebase snapshot to
 //the groupInfo object and what data we want to load into
 //the component
-export function groupChatLoaded(groupSnapShot, chatInfo) {
+export function groupChatLoaded(groupSnapShot, chatSnapShot) {
 	//our object to store the chatRoom info
 	const channels = groupSnapShot.child('channels').val();
-
-	const chatMsgs = chatInfo.val();
-	console.log('Chat Msgs ', chatMsgs);
+	const chatMsgs = chatSnapShot.val();
 
 	const groupChatInfo = {
 		name: groupSnapShot.key,
 		channels: _.keys(channels),
-		selectedChannel: 'default'
+		selectedChannel: 'default',
 		//groupies: ['Douglas', 'Pamela', 'Alex', 'Gabriel']
+	};
+
+	const chatInfo = {
+		messages: _.values(chatMsgs)
 	};
 
 	return {

@@ -20,7 +20,7 @@ class ChatRoom extends Component {
 
   componentWillMount() {
     this.props.fetchGroupChatInfo(this.props.params.group);
-    console.log('user: ', this.props.user);
+    console.log('chat messages: ', this.props.chatInfo.messages);
   }
 
   sendHandler(message) {
@@ -65,8 +65,12 @@ class ChatRoom extends Component {
 }
 
 const mapStateToProps = ({ auth, chatRoom }) => {
-  const { loading, groupChatInfo } = chatRoom;
-  return { loading, groupChatInfo, user: auth.user };
+  const { loading, groupChatInfo, chatInfo } = chatRoom;
+  return {
+    loading,
+    groupChatInfo,
+    chatInfo,
+    user: auth.user };
 };
 
 
