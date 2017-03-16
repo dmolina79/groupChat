@@ -98,36 +98,73 @@ export function signoutUser() {
 		};
 }
 
-//firebase DB CRUD Actions
-
-export function createGroup(name) {
+function createGroupData(name) {
 	const { uid } = getFirebaseAuth().currentUser;
 	const defaultChannelId = `${name}-default`;
 	const commonChannelId = `${name}-common`;
-	return function (dispatch) {
-		getFirebaseDb().child(`entities/groups/${name}`).set({
-			name,
-			admin: uid,
-			channels: {
-				default: {
-					name: 'default',
-					chatId: defaultChannelId
-				},
-				common: {
-					name: 'common',
-					chatId: commonChannelId
-				}
+
+	const groupData = {
+		name,
+		admin: uid,
+		channels: {
+			default: {
+				name: 'default',
+				chatId: defaultChannelId
+			},
+			common: {
+				name: 'common',
+				chatId: commonChannelId
 			}
-		})
-		.then((snapshot) => {
-				browserHistory.push(`/chatroom/${name}`);
-				dispatch({ type: GROUP_CREATED,
-									payload: snapshot
-								});
-			})
-			.catch(error => {
-				console.log(`error creating group. Detail ${error}`);
-			});
+		}
+	};
+
+	return groupData;
+}
+
+function createChatData(name) {
+	const defaultChannelId = `${name}-default`;
+	const commonChannelId = `${name}-common`;
+	const timeStamp = Date.now();
+	const chatData = {
+		[defaultChannelId]: {
+			[timeStamp]: {
+				name: 'chat-bot',
+				dateTime: timeStamp,
+				text: 'Welcome to Group Chat!'
+			}
+		},
+		[commonChannelId]: {
+			[timeStamp]: {
+				name: 'chat-bot',
+				dateTime: timeStamp,
+				text: 'Welcome to the Common chat room!'
+			}
+		}
+	};
+
+	return chatData;
+}
+//firebase DB CRUD Actions
+
+export function createGroup(name) {
+	return function (dispatch) {
+		const createGroupPromise = getFirebaseDb()
+																.child(`entities/groups/${name}`)
+																.set(createGroupData(name));
+		const createChatPromise = getFirebaseDb()
+																.child('entities/chats')
+																.update(createChatData(name));
+
+		Promise.all([createGroupPromise, createChatPromise])
+			.then((results) => {
+					browserHistory.push(`/chatroom/${name}`);
+					dispatch({ type: GROUP_CREATED,
+										payload: results[0]
+									});
+				})
+				.catch(error => {
+					console.log(`error creating group. Detail ${error}`);
+				});
 		};
 }
 
@@ -157,6 +194,9 @@ export function groupChatLoaded(groupSnapShot, chatInfo) {
 	//our object to store the chatRoom info
 	const channels = groupSnapShot.child('channels').val();
 
+	const chatMsgs = chatInfo.val();
+	console.log('Chat Msgs ', chatMsgs);
+
 	const groupChatInfo = {
 		name: groupSnapShot.key,
 		channels: _.keys(channels),
@@ -177,17 +217,22 @@ export function groupChatLoadFailed(error) {
 }
 
 export function fetchGroupChatInfo(name) {
-	const groupChat = `entities/groups/${name}`;
-	console.log(groupChat);
+	const groupChatInfo = `entities/groups/${name}`;
+	const groupChatId = `entities/chats/${name}-default`;
 
 	return function (dispatch) {
 		dispatch({ type: CHAT_LOADING });
 
-		getFirebaseDb()
-		.child(groupChat)
-		.once('value')
-		.then((snapshot) => {
-				dispatch(groupChatLoaded(snapshot, { name: 'default' }));
+		const groupChatInfoPromise = getFirebaseDb()
+																	.child(groupChatInfo)
+																	.once('value');
+    const chatIdPromise = 	getFirebaseDb()
+																	.child(groupChatId)
+																	.once('value');
+
+  Promise.all([groupChatInfoPromise, chatIdPromise])
+		.then((results) => {
+				dispatch(groupChatLoaded(results[0], results[1]));
 			})
 			.catch(error => {
 				console.log(`Could not load group. Detail ${error}`);
