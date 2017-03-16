@@ -12,7 +12,10 @@ import {
 	GROUP_NOT_FOUND,
 	CHAT_LOADING,
 	CHAT_LOADED,
-	CHAT_LOAD_FAIL
+	CHAT_LOAD_FAIL,
+	POST_MSG,
+	POST_MSG_FAIL,
+	POST_MSG_LOADING
 } from './types';
 
 export function getFirebaseAuth() {
@@ -128,16 +131,16 @@ function createChatData(name) {
 	const chatData = {
 		[defaultChannelId]: {
 			[timeStamp]: {
-				name: 'chat-bot',
+				username: 'chat-bot',
 				dateTime: timeStamp,
-				text: 'Welcome to Group Chat!'
+				message: 'Welcome to Group Chat!'
 			}
 		},
 		[commonChannelId]: {
 			[timeStamp]: {
-				name: 'chat-bot',
+				username: 'chat-bot',
 				dateTime: timeStamp,
-				text: 'Welcome to the Common chat room!'
+				message: 'Welcome to the Common chat room!'
 			}
 		}
 	};
@@ -164,6 +167,23 @@ export function createGroup(name) {
 				})
 				.catch(error => {
 					console.log(`error creating group. Detail ${error}`);
+				});
+		};
+}
+
+export function postMessage(message, chatId) {
+	const timeStamp = Date.now();
+	const msg = { ...message, dateTime: timeStamp };
+	return function (dispatch) {
+		getFirebaseDb()
+			.child(`entities/chats/${chatId}/${timeStamp}`)
+			.set(msg)
+			.then(() => {
+					dispatch({ type: POST_MSG, payload: msg });
+				})
+				.catch(error => {
+					console.log('Error posting message to chat. ', error);
+					dispatch({ type: POST_MSG_FAIL, payload: error });
 				});
 		};
 }

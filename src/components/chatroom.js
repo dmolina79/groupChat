@@ -10,23 +10,18 @@ import ChatFeed from './chat-feed';
 class ChatRoom extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      messages: [{ username: 'Gabriel', message: 'hola' },
-                 { username: 'Douglas', message: 'q ondas' }]
-    };
 
     this.sendHandler = this.sendHandler.bind(this);
   }
 
   componentWillMount() {
     this.props.fetchGroupChatInfo(this.props.params.group);
-    console.log('chat messages: ', this.props.chatInfo.messages);
   }
 
   sendHandler(message) {
-    const messages = this.state.messages;
-    messages.push(message);
-    this.setState({ messages });
+    const { name, selectedChannel } = this.props.groupChatInfo;
+    const chatId = `${name}-${selectedChannel}`;
+    this.props.postMessage(message, chatId);
   }
 
   renderLoadingMsg() {
@@ -37,8 +32,10 @@ class ChatRoom extends Component {
 
   render() {
     const { name, channels, selectedChannel } = this.props.groupChatInfo;
+    const { messages } = this.props.chatInfo;
     const { user } = this.props;
 
+    console.log('messages ', messages);
     return (
 
       <div className='chatRoomContainer'>
@@ -53,7 +50,7 @@ class ChatRoom extends Component {
           />
           <ChatFeed
             user={user}
-            messages={this.state.messages}
+            messages={messages}
             sendHandler={this.sendHandler}
           />
 
