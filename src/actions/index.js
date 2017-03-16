@@ -1,5 +1,7 @@
 import { browserHistory } from 'react-router';
+import _ from 'lodash';
 import firebase, { firebaseRef } from '../firebase';
+
 
 import {
 	AUTH_USER,
@@ -7,7 +9,10 @@ import {
 	SIGN_OUT_USER,
 	GROUP_CREATED,
 	GROUP_FOUND,
-	GROUP_NOT_FOUND
+	GROUP_NOT_FOUND,
+	CHAT_LOADING,
+	CHAT_LOADED,
+	CHAT_LOAD_FAIL
 } from './types';
 
 export function getFirebaseAuth() {
@@ -22,6 +27,7 @@ export function signinUser({ email, password }) {
 	return function (dispatch) {
 		//submit email/password to server
 		getFirebaseAuth().signInWithEmailAndPassword(email, password)
+   // ==PROMISE
       .then(() => {
         dispatch(authUser());
         browserHistory.push('/');
@@ -33,7 +39,7 @@ export function signinUser({ email, password }) {
 }
 
 export function signupUser({ email, password }) {
-		return function (dispatch) {
+	return function (dispatch) {
     getFirebaseAuth().createUserWithEmailAndPassword(email, password)
       .then(() => {
         dispatch(authUser());
@@ -56,6 +62,12 @@ export function authError(error) {
 	return {
 		type: AUTH_ERROR,
 		payload: error
+	};
+}
+
+export function groupFound() {
+	return {
+		type: GROUP_FOUND
 	};
 }
 
@@ -88,20 +100,25 @@ export function signoutUser() {
 
 export function createGroup(name) {
 	const { uid } = getFirebaseAuth().currentUser;
-	const defaultChannelId = name + '-default';
+	const defaultChannelId = `${name}-default`;
+	const commonChannelId = `${name}-common`;
 	return function (dispatch) {
-		getFirebaseDb().child(`groups/${name}`).set({
+		getFirebaseDb().child(`entities/groups/${name}`).set({
 			name,
 			admin: uid,
 			channels: {
 				default: {
 					name: 'default',
 					chatId: defaultChannelId
+				},
+				common: {
+					name: 'common',
+					chatId: commonChannelId
 				}
 			}
 		})
 		.then((snapshot) => {
-				browserHistory.push('/chatroom/' + name);
+				browserHistory.push(`/chatroom/${name}`);
 				dispatch({ type: GROUP_CREATED,
 									payload: snapshot
 								});
@@ -115,12 +132,12 @@ export function createGroup(name) {
 export function findGroupChat(name) {
 	return function (dispatch) {
 		getFirebaseDb()
-		.child('groups')
+		.child('entities/groups')
 		.once('value')
 		.then((snapshot) => {
 			if (snapshot.hasChild(name)) {
-					browserHistory.push('/chatroom/' + name);
-					dispatch({ type: GROUP_FOUND });
+					browserHistory.push(`/chatroom/${name}`);
+					dispatch(groupFound());
 				} else {
 					dispatch({ type: GROUP_NOT_FOUND });
 				}
@@ -130,10 +147,48 @@ export function findGroupChat(name) {
 			});
 		};
 }
+//This function should map the Firebase snapshot to
+//the groupInfo object and what data we want to load into
+//the component
+export function groupChatLoaded(groupSnapShot, chatInfo) {
+	//our object to store the chatRoom info
+	const channels = groupSnapShot.child('channels').val();
 
+	const groupChatInfo = {
+		name: groupSnapShot.key,
+		channels: _.keys(channels),
+		//groupies: ['Douglas', 'Pamela', 'Alex', 'Gabriel']
+	};
 
-// export function fetchMessage() {
-// 	return function (dispatch) {
-//
-// 	};
-// }
+	return {
+		type: CHAT_LOADED,
+		payload: { groupChatInfo, chatInfo }
+	};
+}
+
+export function groupChatLoadFailed(error) {
+	return {
+		type: CHAT_LOAD_FAIL,
+		payload: error
+	};
+}
+
+export function fetchGroupChatInfo(name) {
+	const groupChat = `entities/groups/${name}`;
+	console.log(groupChat);
+
+	return function (dispatch) {
+		dispatch({ type: CHAT_LOADING });
+
+		getFirebaseDb()
+		.child(groupChat)
+		.once('value')
+		.then((snapshot) => {
+				dispatch(groupChatLoaded(snapshot, { name: 'default' }));
+			})
+			.catch(error => {
+				console.log(`Could not load group. Detail ${error}`);
+				dispatch(groupChatLoadFailed(error));
+			});
+		};
+}

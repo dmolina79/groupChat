@@ -12,6 +12,10 @@ class FindGroupChat extends Component {
     this.state = { groupName: '' };
   }
 
+  componentWillUnmount() {
+    this.props.groupFound();
+  }
+
   onInputChange(groupName) {
     this.setState({ groupName });
   }
@@ -57,8 +61,9 @@ class FindGroupChat extends Component {
     );
   }
 }
-function mapStateToProps(state) {
+
+const mapStateToProps = (state) => {
 	return { errorMessage: state.group.notFoundError };
-}
+};
 
 export default connect(mapStateToProps, actions)(FindGroupChat);

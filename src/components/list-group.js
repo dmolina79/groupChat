@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default class ListGroup extends Component {
+export default class ListGroup extends Component {  
   renderList() {
     let toRender;
     if (this.props.selectable) {

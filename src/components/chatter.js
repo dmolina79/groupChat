@@ -2,23 +2,22 @@
 import React, { Component } from 'react';
 
 class Chatter extends Component {
-
   constructor(props, context) {
     super(props, context);
     //bind my methods
     this.updateMessage = this.updateMessage.bind(this);
     this.submitMessage = this.submitMessage.bind(this);
-console.log('llamando al constructor');
-//init state
+
+  //init state
     this.state = {
       messages: ['hola pamela']
 
     };
   }
 
-componentWillMount() {
+  componentWillMount() {
   console.log('compenen will mount');
-}
+  }
 
   componentDidMount() {
     console.log('componentDidMount');
@@ -32,13 +31,13 @@ componentWillMount() {
       }
     });
   }
-updateMessage(event) {
+  updateMessage(event) {
   console.log('updateMessage:' + event.target.value);
   this.setState({
     message: event.target.value
   });
-}
-submitMessage(event) {
+  }
+  submitMessage(event) {
   console.log('submitMessage: ' + this.state.message);
   const nextMessage = {
     id: this.state.messages.length,
@@ -51,8 +50,8 @@ submitMessage(event) {
   this.setState({
     messages: list
   });
-// }
-}
+  // }
+  }
 
   render() {
     console.log('Render');
@@ -72,9 +71,9 @@ submitMessage(event) {
       <input onChange={this.updateMessage} type="text" placeholder="Message" />
       <button onClick={this.submitMessage}>Submit Message</button>
 
-</div>
+  </div>
     );
   }
-}
+  }
 
 export default Chatter;

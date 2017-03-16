@@ -12,7 +12,6 @@ import NotFound from './components/not_found';
 import Signin from './components/auth/signin';
 import Signout from './components/auth/signout';
 import Signup from './components/auth/signup';
-import Feature from './components/feature';
 import RequireAuth from './components/auth/require_auth';
 import Landing from './components/landing';
 import reducers from './reducers';
@@ -38,11 +37,9 @@ ReactDOM.render(
 			<Route path="signup" component={Signup} />
 			<Route path="findgroupchat" component={RequireAuth(FindGroupChat)} />
 			<Route path="creategroupchat" component={RequireAuth(CreateGroupChat)} />
-			<Route path="feature" component={RequireAuth(Feature)} />
 			{/* Default not found route */}
 			<Route path="*" component={NotFound} />
 		</Route>
-
 
 	</Router>
 </Provider>
