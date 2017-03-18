@@ -10,23 +10,18 @@ import ChatFeed from './chat-feed';
 class ChatRoom extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      messages: [{ username: 'Gabriel', message: 'hola' },
-                 { username: 'Douglas', message: 'q ondas' }]
-    };
 
     this.sendHandler = this.sendHandler.bind(this);
   }
 
   componentWillMount() {
     this.props.fetchGroupChatInfo(this.props.params.group);
-    console.log('user: ', this.props.user);
   }
 
   sendHandler(message) {
-    const messages = this.state.messages;
-    messages.push(message);
-    this.setState({ messages });
+    const { name, selectedChannel } = this.props.groupChatInfo;
+    const chatId = `${name}-${selectedChannel}`;
+    this.props.postMessage(message, chatId);
   }
 
   renderLoadingMsg() {
@@ -37,26 +32,25 @@ class ChatRoom extends Component {
 
   render() {
     const { name, channels, selectedChannel } = this.props.groupChatInfo;
+    const { messages } = this.props.chatInfo;
     const { user } = this.props;
 
+    console.log('messages ', messages);
     return (
 
-      <div className='chatRoomContainer'>
+      <div id='chatRoomContainer'>
         {this.renderLoadingMsg()}
-        <div>
-          <ChatSidenav
-           selectedChannel={selectedChannel}
-           name={name}
-           channels={channels}
-           groupies={['Douglas', 'Pamela', 'Alex', 'Gabriel']}
-          />
-          <ChatFeed
-            user={user}
-            messages={this.state.messages}
-            sendHandler={this.sendHandler}
-          />
-
-        </div>
+        <ChatSidenav
+         selectedChannel={selectedChannel}
+         name={name}
+         channels={channels}
+         groupies={['Douglas', 'Pamela', 'Alex', 'Gabriel']}
+        />
+        <ChatFeed
+          user={user}
+          messages={messages}
+          sendHandler={this.sendHandler}
+        />
         { /*<ChatterToolBar /> */ }
       </div>
     );
@@ -64,8 +58,12 @@ class ChatRoom extends Component {
 }
 
 const mapStateToProps = ({ auth, chatRoom }) => {
-  const { loading, groupChatInfo } = chatRoom;
-  return { loading, groupChatInfo, user: auth.user };
+  const { loading, groupChatInfo, chatInfo } = chatRoom;
+  return {
+    loading,
+    groupChatInfo,
+    chatInfo,
+    user: auth.user };
 };
 
 

@@ -6,10 +6,10 @@ import ChatInput from './chat-input';
 export default class ChatFeed extends Component {
   render() {
     return (
-      <div>
+      <div id="chatFeed">
         <h3>CHAT</h3>
         <ChatMessages messages={this.props.messages} />
-        <ChatInput 
+        <ChatInput
           user={this.props.user}
           onSend={this.props.sendHandler}
         />

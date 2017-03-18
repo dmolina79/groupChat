@@ -12,7 +12,10 @@ import {
 	GROUP_NOT_FOUND,
 	CHAT_LOADING,
 	CHAT_LOADED,
-	CHAT_LOAD_FAIL
+	CHAT_LOAD_FAIL,
+	POST_MSG,
+	POST_MSG_FAIL,
+	POST_MSG_LOADING
 } from './types';
 
 export function getFirebaseAuth() {
@@ -98,36 +101,90 @@ export function signoutUser() {
 		};
 }
 
-//firebase DB CRUD Actions
-
-export function createGroup(name) {
+function createGroupData(name) {
 	const { uid } = getFirebaseAuth().currentUser;
 	const defaultChannelId = `${name}-default`;
 	const commonChannelId = `${name}-common`;
-	return function (dispatch) {
-		getFirebaseDb().child(`entities/groups/${name}`).set({
-			name,
-			admin: uid,
-			channels: {
-				default: {
-					name: 'default',
-					chatId: defaultChannelId
-				},
-				common: {
-					name: 'common',
-					chatId: commonChannelId
-				}
+
+	const groupData = {
+		name,
+		admin: uid,
+		channels: {
+			default: {
+				name: 'default',
+				chatId: defaultChannelId
+			},
+			common: {
+				name: 'common',
+				chatId: commonChannelId
 			}
-		})
-		.then((snapshot) => {
-				browserHistory.push(`/chatroom/${name}`);
-				dispatch({ type: GROUP_CREATED,
-									payload: snapshot
-								});
-			})
-			.catch(error => {
-				console.log(`error creating group. Detail ${error}`);
-			});
+		}
+	};
+
+	return groupData;
+}
+
+function createChatData(name) {
+	const defaultChannelId = `${name}-default`;
+	const commonChannelId = `${name}-common`;
+	const timeStamp = Date.now();
+	const chatData = {
+		[defaultChannelId]: {
+			[timeStamp]: {
+				username: 'chat-bot',
+				dateTime: timeStamp,
+				message: 'Welcome to Group Chat!'
+			}
+		},
+		[commonChannelId]: {
+			[timeStamp]: {
+				username: 'chat-bot',
+				dateTime: timeStamp,
+				message: 'Welcome to the Common chat room!'
+			}
+		}
+	};
+
+	return chatData;
+}
+//firebase DB CRUD Actions
+
+export function createGroup(name) {
+	return function (dispatch) {
+		const createGroupPromise = getFirebaseDb()
+																.child(`entities/groups/${name}`)
+																.set(createGroupData(name));
+		const createChatPromise = getFirebaseDb()
+																.child('entities/chats')
+																.update(createChatData(name));
+
+		Promise.all([createGroupPromise, createChatPromise])
+			.then((results) => {
+					browserHistory.push(`/chatroom/${name}`);
+					dispatch({ type: GROUP_CREATED,
+										payload: results[0]
+									});
+				})
+				.catch(error => {
+					console.log(`error creating group. Detail ${error}`);
+				});
+		};
+}
+
+export function postMessage(message, chatId) {
+	const timeStamp = Date.now();
+	const msg = { ...message, dateTime: timeStamp };
+	return function (dispatch) {
+		getFirebaseDb()
+			.child(`entities/chats/${chatId}/${timeStamp}`)
+			.set(msg)
+			.then(() => {
+					dispatch({ type: POST_MSG, payload: msg });
+				})
+				.catch(error => {
+					console.log('Error posting message to chat. ', error);
+					dispatch({ type: POST_MSG_FAIL, payload: error });
+				});
 		};
 }
 
@@ -153,15 +210,20 @@ export function findGroupChat(name) {
 //This function should map the Firebase snapshot to
 //the groupInfo object and what data we want to load into
 //the component
-export function groupChatLoaded(groupSnapShot, chatInfo) {
+export function groupChatLoaded(groupSnapShot, chatSnapShot) {
 	//our object to store the chatRoom info
 	const channels = groupSnapShot.child('channels').val();
+	const chatMsgs = chatSnapShot.val();
 
 	const groupChatInfo = {
 		name: groupSnapShot.key,
 		channels: _.keys(channels),
-		selectedChannel: 'default'
+		selectedChannel: 'default',
 		//groupies: ['Douglas', 'Pamela', 'Alex', 'Gabriel']
+	};
+
+	const chatInfo = {
+		messages: _.values(chatMsgs)
 	};
 
 	return {
@@ -178,17 +240,22 @@ export function groupChatLoadFailed(error) {
 }
 
 export function fetchGroupChatInfo(name) {
-	const groupChat = `entities/groups/${name}`;
-	console.log(groupChat);
+	const groupChatInfo = `entities/groups/${name}`;
+	const groupChatId = `entities/chats/${name}-default`;
 
 	return function (dispatch) {
 		dispatch({ type: CHAT_LOADING });
 
-		getFirebaseDb()
-		.child(groupChat)
-		.once('value')
-		.then((snapshot) => {
-				dispatch(groupChatLoaded(snapshot, { name: 'default' }));
+		const groupChatInfoPromise = getFirebaseDb()
+																	.child(groupChatInfo)
+																	.once('value');
+    const chatIdPromise = 	getFirebaseDb()
+																	.child(groupChatId)
+																	.once('value');
+
+  Promise.all([groupChatInfoPromise, chatIdPromise])
+		.then((results) => {
+				dispatch(groupChatLoaded(results[0], results[1]));
 			})
 			.catch(error => {
 				console.log(`Could not load group. Detail ${error}`);
