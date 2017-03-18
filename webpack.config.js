@@ -16,9 +16,8 @@ const config = {
     './src/index.js'
   ],
   output: {
-    path: __dirname,
-    publicPath: '/public',
-    filename: './public/bundle.js'
+    path: path.resolve(__dirname, './public'),
+    filename: 'bundle.js'
   },
   devtool: 'eval-cheap-module-source-map',
   module: {
@@ -47,7 +46,7 @@ const config = {
   },
   devServer: {
     historyApiFallback: true,
-    contentBase: './'
+    contentBase: path.resolve(__dirname, './public')
   }
 };
 

@@ -43,7 +43,6 @@ class ChatRoom extends Component {
 
       <div className='chatRoomContainer'>
         {this.renderLoadingMsg()}
-
         <div>
           <ChatSidenav
            selectedChannel={selectedChannel}
