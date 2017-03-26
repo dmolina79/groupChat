@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
 
-export class Header extends Component {
+ class Header extends Component {
 	renderLinks() {
 		const authenticated = this.props.authenticated;
 		let links = [];
@@ -25,10 +25,10 @@ export class Header extends Component {
 			links = ([
 
 				<li className="nav-item" key={1}>
-					<Link className="nav-link" to="/signin">Sign In</Link>
+					<Link className="btn btn-warning" to="/signin">Sign In</Link>
 				</li>,
 				<li className="nav-item" key={2}>
-					<Link className="nav-link" to="/signup">Sign Up</Link>
+					<Link className="btn btn-warning" to="/signup">Sign Up</Link>
 				</li>
 
 
@@ -41,8 +41,9 @@ export class Header extends Component {
 	render() {
 		return (
 
+
 			<nav className="navbar navbar-default">
-				<Link to="/" className="navbar-brand">Welcome to Group Chat</Link>
+				<Link to="/" className="btn btn-warning">Welcome to Group Chat</Link>
 
 				<ul className="nav navbar-nav" id="nav1">
 					{this.renderLinks()}
@@ -57,5 +58,6 @@ export class Header extends Component {
 function mapStateToProps(state) {
 	return { authenticated: state.auth.authenticated };
 }
+
 
 export default connect(mapStateToProps)(Header);

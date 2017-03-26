@@ -39,7 +39,7 @@ class Signin extends Component {
 
 		return (
 
-
+			<div className="container">
 			<form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
 			<div id="signIn">
 			<h1>Sign in to Group Chat</h1>
@@ -51,13 +51,14 @@ class Signin extends Component {
 
 					<label htmlFor="Password">Password:</label>
 					<input {...password} type="password" className="form-control" placeholder="Enter password"  />
-					<button action="submit" className="btn btn-primary" id="btn">
+					<button action="submit" className="btn btn-warning" id="btn">
 					Sign in
 					</button>
 				</fieldset>
 				{this.renderAlert()}
 
 			</form>
+			</div>
 		);
 	}
 }

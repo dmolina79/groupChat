@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
-import ChatterToolBar from './chattertoolbar';
 
-import ChatSidenav from './chat-sidenav';
-import ChatFeed from './chat-feed';
+import ChatSidenav from '../components/chat-sidenav';
+import ChatFeed from '../components/chat-feed';
 
 class ChatRoom extends Component {
   constructor(props) {

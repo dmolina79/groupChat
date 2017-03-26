@@ -15,7 +15,7 @@ export default class ChatMessages extends Component {
     });
 
     return (
-      <div>
+      <div className="scroll">
         { messages }
       </div>
     );

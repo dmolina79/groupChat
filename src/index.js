@@ -15,9 +15,9 @@ import Signup from './components/auth/signup';
 import RequireAuth from './components/auth/require_auth';
 import Landing from './components/landing';
 import reducers from './reducers';
-import FindGroupChat from './components/findgroupchat';
-import CreateGroupChat from './components/creategroupchat';
-import ChatRoom from './components/chatroom';
+import FindGroupChat from './containers/findgroupchat';
+import CreateGroupChat from './containers/creategroupchat';
+import ChatRoom from './containers/chatroom';
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 const store = createStoreWithMiddleware(reducers);
@@ -43,4 +43,4 @@ ReactDOM.render(
 
 	</Router>
 </Provider>
-, document.querySelector('.container'));
+, document.querySelector('.body'));

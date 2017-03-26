@@ -29,15 +29,19 @@ export function getFirebaseDb() {
 
 export function signinUser({ email, password }) {
 	return function (dispatch) {
+
 		//submit email/password to server
 		getFirebaseAuth().signInWithEmailAndPassword(email, password)
    // ==PROMISE
       .then((user) => {
+
         dispatch(authUser({ email: user.email }));
+
+
         browserHistory.push('/');
       })
       .catch(error => {
-        dispatch(authError(error));
+				dispatch(authError(error));
       });
 	};
 }

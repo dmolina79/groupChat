@@ -4,15 +4,18 @@ import React from 'react';
 const Landing = () => {
       return (
         <div>
-          <h1 id="welcome">
-            <img alt="img" src="img/img2.jpg" id="img1" />
-            Welcome to a Group Chat
-          </h1>
-          <h1 className="animated fadeInDown" id="welcome2">
-            GroupChat brings all the pieces and people you need together so you can actually get
-            things done.
-            <img alt="img" src="img/img3.jpg" id="img3" />
-          </h1>
+        <img alt="img" src="img/banner.jpg" className="banner" />
+        <div className="container">
+        <div className="info-landing">
+        <h1>The fastest way to help your customers</h1>
+        <h4>Start chatting with visitors who need your help.</h4>
+        </div>
+        <img alt="img" src="img/img2.jpg" className="img2" />
+
+
+        </div>
+
+
         </div>
       );
 };
