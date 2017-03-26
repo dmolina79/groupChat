@@ -17,7 +17,8 @@ export default function (state = INITIAL_STATE, action) {
 		case SIGN_OUT_USER:
 			return { ...state, ...INITIAL_STATE };
 		case AUTH_ERROR:
-			return { ...state, ...INITIAL_STATE, error: action.payload };
+      console.log('error payload: ', action.payload);
+			return { ...state, ...INITIAL_STATE, error: action.payload.message };
     default:
       return state;
 	}

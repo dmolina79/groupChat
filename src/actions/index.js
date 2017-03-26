@@ -54,7 +54,6 @@ export function signupUser({ email, password }) {
         browserHistory.push('/');
       })
       .catch(error => {
-        console.log(error);
         dispatch(authError(error));
       });
   };
