@@ -4,11 +4,12 @@ import { firebaseRef } from '../firebase';
 
 import {
 	CHAT_LOADING,
-	CHAT_LOADED,
+	CHAT_MSGS_LOADED,
+	CHAT_INFO_LOADED,
 	CHAT_LOAD_FAIL,
 	POST_MSG,
 	POST_MSG_FAIL,
-	POST_MSG_LOADING
+	//POST_MSG_LOADING
 } from './types';
 
 function getFirebaseDb() {
@@ -36,10 +37,9 @@ export function postMessage(message, chatId) {
 //This function should map the Firebase snapshot to
 //the groupInfo object and what data we want to load into
 //the component
-export function groupChatLoaded(groupSnapShot, chatSnapShot) {
+export function groupChatInfoLoaded(groupSnapShot) {
 	//our object to store the chatRoom info
 	const channels = groupSnapShot.child('channels').val();
-	const chatMsgs = chatSnapShot.val();
 
 	const groupChatInfo = {
 		name: groupSnapShot.key,
@@ -48,13 +48,22 @@ export function groupChatLoaded(groupSnapShot, chatSnapShot) {
 		//groupies: ['Douglas', 'Pamela', 'Alex', 'Gabriel']
 	};
 
+	return {
+		type: CHAT_INFO_LOADED,
+		payload: { groupChatInfo }
+	};
+}
+
+export function groupChatMsgLoaded(chatSnapShot) {
+	const chatMsgs = chatSnapShot.val();
+
 	const chatInfo = {
 		messages: _.values(chatMsgs)
 	};
 
 	return {
-		type: CHAT_LOADED,
-		payload: { groupChatInfo, chatInfo }
+		type: CHAT_MSGS_LOADED,
+		payload: { chatInfo }
 	};
 }
 
@@ -72,20 +81,18 @@ export function fetchGroupChatInfo(name) {
 	return function (dispatch) {
 		dispatch({ type: CHAT_LOADING });
 
-		const groupChatInfoPromise = getFirebaseDb()
-																	.child(groupChatInfo)
-																	.once('value');
-    const chatIdPromise = 	getFirebaseDb()
-																	.child(groupChatId)
-																	.once('value');
+		getFirebaseDb().child(groupChatInfo)
+				.on('value', groupInfoSnapshot => dispatch(groupChatInfoLoaded(groupInfoSnapshot)));
+				// .catch(error => {
+				// 	console.log(`Could not load group. Detail ${error}`);
+				// 	dispatch(groupChatLoadFailed(error));
+				// });
 
-  Promise.all([groupChatInfoPromise, chatIdPromise])
-		.then((results) => {
-				dispatch(groupChatLoaded(results[0], results[1]));
-			})
-			.catch(error => {
-				console.log(`Could not load group. Detail ${error}`);
-				dispatch(groupChatLoadFailed(error));
-			});
-		};
+		getFirebaseDb().child(groupChatId)
+				.on('value', msgsSnapshot => dispatch(groupChatMsgLoaded(msgsSnapshot)));
+				// .catch(error => {
+				// 	console.log(`Could not load group. Detail ${error}`);
+				// 	dispatch(groupChatLoadFailed(error));
+				// });
+	};
 }
