@@ -12,14 +12,38 @@
 	margin-top: 300px;
 
 }
+.sorryface {
+	height: 100px;
+	width: 100px;
+}
+#signOutContainer {
+	padding-top: 150px;
+	float: right;
+}
+#signOutContainer h1 {
 
-
+	font-family: monospace;
+	font-style: oblique;
+	font-variant: small-caps;
+}
 
 #chatRoomContainer {
 	width:100%;
 	padding: 0px 5px;
 }
 
+.GroupChat {
+	float: right;
+	padding-right: 300px;
+	padding-top: 100px;
+}
+.GroupChat h1 {
+	font-family: cursive;
+}
+#buttonCreateGroup {
+	float: right;
+	margin-top: 10px;
+}
 
 .sidenav {
 	float: left;
@@ -61,15 +85,16 @@
 	color: red;
 }
 
-#signIn {
+.sign {
 	margin-top: 50px;
 	text-align: center;
-
+	background-color: #008B8B;
+	color: white;
+	font-family: fantasy;
+	font-size: 15px;
 }
 
-.form-group {
-
-	padding-left: 400px;
-	padding-right: 400px;
-
-}
+#signContainer {
+	margin-top: 100px;
+	float: right;
+	}

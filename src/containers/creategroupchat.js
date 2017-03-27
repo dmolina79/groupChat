@@ -22,27 +22,27 @@ class CreateGroupChat extends Component {
   }
   render() {
     return (
-      <div>
-      <form onSubmit={this.submitCreateGroup}>
-      <div id="GroupChat">
-      <h1>Create your GroupChat</h1>
-      </div>
-        <fieldset className="form-group">
+      <div className="container">
+      <img alt="img" src="img/groupchat.jpg" className="groupchat1" />
+      <form className="GroupChat" onSubmit={this.submitCreateGroup}>
+
+      <h1>Create a new group chat</h1>
+
+
           <input
             value={this.state.groupName}
-            id="GroupChat1"
             className="form-control"
             placeholder="Enter a new name"
             onChange={event => this.onInputChange(event.target.value)}
           />
           <button
             action="submit"
-            className="btn btn-primary"
-            id="btn"
+            className="btn btn-warning"
+            id="buttonCreateGroup"
           >
           Create Group
           </button>
-        </fieldset>
+
         </form>
       </div>
     );

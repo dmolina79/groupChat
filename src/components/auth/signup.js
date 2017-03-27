@@ -72,17 +72,19 @@ class Signup extends Component {
 		const { handleSubmit } = this.props;
 
 		return (
-			<form onSubmit={handleSubmit(this.handleFormSubmit)}>
-			<div id="signUp">
+			<div className="container" id="signContainer">
+			<form className="col-xs-4" onSubmit={handleSubmit(this.handleFormSubmit)}>
+			<div className="sign">
 			<h1>Sign up to Group Chat</h1>
 			<h3>Enter your email and password</h3>
 			</div>
 			<fieldset className="form-group1">
 				{ _.map(FIELDS, this.renderField)}
 				{this.renderAlert()}
-				<button type="submit" className="btn btn-primary" id="btn1">Sign Up!</button>
+				<button type="submit" className="btn btn-warning" >Sign Up!</button>
 				</fieldset>
 			</form>
+			</div>
 		);
 	}
 }

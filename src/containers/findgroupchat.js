@@ -38,26 +38,22 @@ class FindGroupChat extends Component {
 
   render() {
     return (
-      <div>
-      <form onSubmit={this.findGroup}>
-      <div id="GroupChat">
-      <h1>Find your GroupChat</h1>
-      </div>
-      <fieldset className="form-group">
-                <input
-                  value={this.state.groupName}
-                  id="GroupChat1"
-                  className="form-control"
-                  placeholder="Enter your GroupChat"
-                  onChange={event => this.onInputChange(event.target.value)}
-                />
-      <button action="submit" className="btn btn-primary" id="btn">
-      Find Group
-      </button>
-      { this.renderAlert() }
-      </fieldset>
-      </form>
-      </div>
+      <div className="container">
+        <form className="GroupChat" onSubmit={this.findGroup}>
+         <h1>Join an existing team</h1>
+         <input
+         value={this.state.groupName}
+         className="form-control"
+         placeholder="Enter your GroupChat"
+         onChange={event => this.onInputChange(event.target.value)}
+         />
+         <button action="submit" className="btn btn-warning" id="buttonCreateGroup">
+         Find Group
+         </button>
+         { this.renderAlert() }
+         </form>
+         <img alt="img" src="img/groupchat2.jpg" height="300" width="300" />
+         </div>
     );
   }
 }

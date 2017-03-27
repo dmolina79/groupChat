@@ -17,7 +17,7 @@ import { Link } from 'react-router';
 					<Link className="nav-link" to="findgroupchat">Find a GroupChat</Link>
 				</li>,
 				<li className="nav-item" key={5}>
-					<Link className="nav-link" to="/signout">Sign Out</Link>
+					<Link className="btn btn-warning" to="/signout">Sign Out</Link>
 				</li>
 			]);
 		} else {
