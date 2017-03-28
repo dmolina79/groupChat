@@ -1,75 +1,50 @@
-.banner {
-	position: absolute;
-	top: 100px;
-	width: 100%;
+
+.banner1 {
+	background: url(../img/banner.jpg);
 	height: 250px;
-	z-index: -1;
+	background-size: cover;
+	background-position: center;
 }
 
-.info-landing {
-
-	float: right;
-	margin-top: 300px;
-
+.banner2 {
+	background: url(../img/img2.jpg);
+	background-repeat: no-repeat;
+	height: 500px;
+	background-position: top center;
 }
 
-
-
-#chatRoomContainer {
-	width:100%;
-	padding: 0px 5px;
+.sidebar {
+	height: 100vh;
 }
 
-
-.sidenav {
-	float: left;
-	width: 250px;
-	height: 100%;
-	margin-right: 30px;
-	margin-left : 5px;
-}
-
-#chatFeed {
-	display: inline-block;
-  margin:0 auto;
-  width: 800px;
-	padding: 14px;
-	/*border-style: ridge;*/
-	border-width: 10px;
-
-
-
-}
-.scroll {
-	overflow: scroll;
-	background-color: #FFE4C4;
-}
-
-.nav11 {
-	background-color: red;
-}
-
-
-
-#navbarNavAltMarkup {
-
+.sidenav div {
 	color: white;
 }
 
-#nav1 {
-	float: right;
-	color: red;
+#chatFeed {
+	background-color: lightgray;
+	height: 100vh;
 }
 
-#signIn {
-	margin-top: 50px;
-	text-align: center;
-
+.messages {
+  	overflow-y: scroll;
 }
 
-.form-group {
+.chat-color {
+	background: #4D394B;
+}
 
-	padding-left: 400px;
-	padding-right: 400px;
+.nav .nav-link,
+.nav .nav-header {
+	border-radius: 0px 5px 5px 0px;
+	color: #AB9BA9;
+}
 
+.nav .active {
+	background: #4C9689;
+	color: #FFFFFF;
+}
+
+.nav .nav-link:hover:not(.active) {
+	background: #3E313C;
 }

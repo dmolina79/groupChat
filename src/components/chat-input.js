@@ -25,15 +25,16 @@ export default class ChatInput extends Component {
   render() {
     return (
 
-      <form onSubmit={this.submitHandler}>
+      <form className="form" onSubmit={this.submitHandler}>
         <input
-          type="text" className="form-control"
+          className="form-control"
+          type="text" 
           onChange={this.textChangeHandler}
           value={this.state.chatInput}
           placeholder="Write a message..."
           required
         />
-        <button type="button" className="btn btn-primary" onClick={this.submitHandler} >Send</button>
+        <button type="button" className="btn btn-success col" onClick={this.submitHandler}>Send</button>
       </form>
 
     );

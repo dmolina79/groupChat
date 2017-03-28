@@ -36,21 +36,26 @@ class ChatRoom extends Component {
 
     console.log('messages ', messages);
     return (
-
-      <div id='chatRoomContainer'>
+      <div className="container-fluid">
         {this.renderLoadingMsg()}
-        <ChatSidenav
-         selectedChannel={selectedChannel}
-         name={name}
-         channels={channels}
-         groupies={['Douglas', 'Pamela', 'Alex', 'Gabriel']}
-        />
-        <ChatFeed
-          user={user}
-          messages={messages}
-          sendHandler={this.sendHandler}
-        />
-        { /*<ChatterToolBar /> */ }
+        <div className="row sidebar">
+          <div className="col-sm-3 col-md-2 pl-0 chat-color">
+            <ChatSidenav
+              selectedChannel={selectedChannel}
+              name={name}
+              channels={channels}
+              groupies={['Douglas', 'Pamela', 'Alex', 'Gabriel']}
+            />
+          </div>
+          <div className="col-sm-9 col-md-10 p-0">
+            <ChatFeed
+              user={user}
+              messages={messages}
+              sendHandler={this.sendHandler}
+            />
+          </div>
+          { /*<ChatterToolBar /> */}
+        </div>
       </div>
     );
   }
@@ -62,7 +67,8 @@ const mapStateToProps = ({ auth, chatRoom }) => {
     loading,
     groupChatInfo,
     chatInfo,
-    user: auth.user };
+    user: auth.user
+  };
 };
 
 
