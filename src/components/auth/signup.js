@@ -73,7 +73,7 @@ class Signup extends Component {
 
 		return (
 			<div className="container" id="signContainer">
-			<form className="col-xs-4" onSubmit={handleSubmit(this.handleFormSubmit)}>
+			<form className="col-xs-6" onSubmit={handleSubmit(this.handleFormSubmit)}>
 			<div className="sign">
 			<h1>Sign up to Group Chat</h1>
 			<h3>Enter your email and password</h3>

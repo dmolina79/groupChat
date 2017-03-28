@@ -9,11 +9,14 @@ export default class ChatSidenav extends Component {
       channels,
       selectedChannel,
       groupies,
+    
     } = this.props;
+
 
     return (
       <div className="sidenav">
-        {name} 
+        {name}
+
         <hr />
         <ListGroup
           group="Channels"

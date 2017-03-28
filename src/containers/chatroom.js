@@ -42,6 +42,7 @@ class ChatRoom extends Component {
          name={name}
          channels={channels}
          groupies={['Douglas', 'Pamela', 'Alex', 'Gabriel']}
+         user={user}
         />
         <ChatFeed
           user={user}
@@ -57,7 +58,7 @@ class ChatRoom extends Component {
 const mapStateToProps = ({ auth, chatRoom, activeGroup }) => {
   const { loading, chatInfo } = chatRoom;
   const { groupChatInfo } = activeGroup;
-  
+
   return {
     loading,
     groupChatInfo,
