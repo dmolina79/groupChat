@@ -58,13 +58,13 @@ class Signup extends Component {
 		const fieldHelper = this.props.fields[field];
 
 		return (
-			<div key={field} className={this.showFormIsValid(fieldHelper)} id="label1" >
 
-					<label htmlFor={fieldConfig.label}>{fieldConfig.label}</label>
-					<input type={fieldConfig.type} className="form-control" {...fieldHelper} />
-					{this.showError(fieldHelper)}
-
+			<div className="form-group" key={field} className={this.showFormIsValid(fieldHelper)}>
+				<label htmlFor={fieldConfig.label}>{fieldConfig.label}</label>
+				<input type={fieldConfig.type} className="form-control" {...fieldHelper} />
+				{this.showError(fieldHelper)}
 			</div>
+
 		);
 	}
 
@@ -72,18 +72,18 @@ class Signup extends Component {
 		const { handleSubmit } = this.props;
 
 		return (
-			<div className="container" id="signContainer">
-			<form className="col-xs-6" onSubmit={handleSubmit(this.handleFormSubmit)}>
-			<div className="sign">
-			<h1>Sign up to Group Chat</h1>
-			<h3>Enter your email and password</h3>
-			</div>
-			<fieldset className="form-group1">
-				{ _.map(FIELDS, this.renderField)}
-				{this.renderAlert()}
-				<button type="submit" className="btn btn-warning" >Sign Up!</button>
-				</fieldset>
-			</form>
+
+			<div className="jumbotron">
+				<div className="text-center">
+					<h1>Sign up to Group Chat</h1>
+					<h3>Enter your email and password</h3>
+				</div>
+				<form className="col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3" onSubmit={handleSubmit(this.handleFormSubmit)}>
+					{ _.map(FIELDS, this.renderField)}
+					<button type="submit" className="btn btn-outline-success col">Sign Up!</button>
+					{this.renderAlert()}
+				</form>
+
 			</div>
 		);
 	}

@@ -9,9 +9,9 @@ export default class ListGroup extends Component {
   isItemActive(item) {
     let result;
     if (this.props.selectedItem === item) {
-      result = 'list-group-item active';
+      result = 'nav-link pl-4 py-2 my-0 h5 active';
     } else {
-      result = 'list-group-item';
+      result = 'nav-link pl-4 py-2 my-0 h5';
     }
     return result;
   }
@@ -21,13 +21,13 @@ export default class ListGroup extends Component {
     if (this.props.selectable) {
       toRender = this.props.list.map((item) => {
         return (
-          <button type="button" key={item} className={this.isItemActive(item)}>{item}</button>
+          <a href="/" className={this.isItemActive(item)}>{item}</a>
         );
       });
     } else {
       toRender = this.props.list.map((item) => {
         return (
-          <li key={item} className="list-group-item">{item}</li>
+          <span className="nav-link pl-4 py-2 my-0 h5">{item}</span>
         );
       });
     }
@@ -37,11 +37,9 @@ export default class ListGroup extends Component {
 
   render() {
     return (
-      <div className="panel panel-default">
-        <div className="panel-heading">{this.props.group}</div>
-        <ul className="list-group">
-          {this.renderList()}
-        </ul>
+      <div className="nav flex-column text-lowercase">
+        <div className="nav-header text-uppercase pl-4 pt-4 h4">{this.props.group}</div>
+        {this.renderList()}
       </div>
     );
   }

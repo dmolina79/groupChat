@@ -38,31 +38,26 @@ class Signin extends Component {
 		const { handleSubmit, fields: { email, password } } = this.props;
 
 		return (
+			<div className="jumbotron">
+				<div className="text-center">
+					<h1>Sign in to Group Chat</h1>
+					<h3>Enter your email and password</h3>
+				</div>
+				<form className="col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3" onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
+					<div className="form-group">
 
-			<div className="container" id="signContainer">
-				<form className="col-xs-6" onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
-					<div className="sign">
-						<h1>Sign in to Group Chat</h1>
-						<h3>Enter your email and password</h3>
-					</div>
-					<fieldset >
 						<label htmlFor="Email" id="email">Email:</label>
 						<input {...email} className="form-control" placeholder="Enter E-mail" />
+					</div>
+					<div className="form-group">
 						<label htmlFor="Password">Password:</label>
-						<input
-						{...password}
-							type="password"
-							className="form-control"
-							placeholder="Enter password"
-						/>
-						<button action="submit" className="btn btn-warning" id="btn">
-						Sign in
-						</button>
-						</fieldset>
-						{this.renderAlert()}
-						</form>
-			</div>
+						<input {...password} type="password" className="form-control" placeholder="Enter password" />
+					</div>
+					<button type="submit" className="btn btn-outline-success col">Sign in</button>
+					{this.renderAlert()}
 
+				</form>
+			</div>
 		);
 	}
 }

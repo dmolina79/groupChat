@@ -26,40 +26,42 @@ class FindGroupChat extends Component {
   }
 
   renderAlert() {
-		if (this.props.errorMessage) {
+    if (this.props.errorMessage) {
       console.log(this.props.errorMessage);
-			return (
-				<div className="alert alert-danger">
-					<strong>Oops!</strong> {this.props.errorMessage}
-				</div>
-			);
-		}
-	}
+      return (
+        <div className="alert alert-danger">
+          <strong>Oops!</strong> {this.props.errorMessage}
+        </div>
+      );
+    }
+  }
 
   render() {
     return (
-      <div className="container">
-        <form className="GroupChat" onSubmit={this.findGroup}>
-         <h1>Join an existing team</h1>
-         <input
-         value={this.state.groupName}
-         className="form-control"
-         placeholder="Enter your GroupChat"
-         onChange={event => this.onInputChange(event.target.value)}
-         />
-         <button action="submit" className="btn btn-warning" id="buttonCreateGroup">
-         Find Group
-         </button>
-         { this.renderAlert() }
-         </form>
-         <img alt="img" src="img/groupchat2.jpg" height="300" width="300" />
-         </div>
+      <div className="jumbotron">
+				<div className="text-center">
+					<h1>Join an existing team</h1>
+				</div>
+				<form className="col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3" onSubmit={this.findGroup}>
+					<div className="form-group">
+						<input
+              value={this.state.groupName}
+              className="form-control"
+              placeholder="Enter your GroupChat"
+              onChange={event => this.onInputChange(event.target.value)}
+            />
+					</div>
+					<button type="submit" className="btn btn-outline-success col">Find</button>
+					{this.renderAlert()}
+				</form>
+        {/*<img alt="img" src="img/groupchat2.jpg" height="300" width="300" />*/}
+			</div>
     );
   }
 }
 
 const mapStateToProps = (state) => {
-	return { errorMessage: state.group.notFoundError };
+  return { errorMessage: state.group.notFoundError };
 };
 
 export default connect(mapStateToProps, actions)(FindGroupChat);

@@ -9,23 +9,22 @@ export default class ChatSidenav extends Component {
       channels,
       selectedChannel,
       groupies,
-    
+
     } = this.props;
 
 
     return (
       <div className="sidenav">
-        {name}
-
-        <hr />
+        <div className="header h3 pt-3 px-4">{name}</div>
         <ListGroup
+          className="list-group"
           group="Channels"
           list={channels}
           selectedItem={selectedChannel}
           selectable={true}
         />
-        <hr />
         <ListGroup
+          className="list-group"
           group="Groupies"
           list={groupies}
           selectedItem=""

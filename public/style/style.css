@@ -1,16 +1,16 @@
-.banner {
-	position: absolute;
-	top: 100px;
-	width: 100%;
+
+.banner1 {
+	background: url(../img/banner.jpg);
 	height: 250px;
-	z-index: -1;
+	background-size: cover;
+	background-position: center;
 }
 
-.info-landing {
-
-	float: right;
-	margin-top: 300px;
-
+.banner2 {
+	background: url(../img/img2.jpg);
+	background-repeat: no-repeat;
+	height: 500px;
+	background-position: top center;
 }
 .sorryface {
 	height: 100px;
@@ -20,8 +20,16 @@
 	padding-top: 150px;
 	padding-left: 300px;
 }
-#signOutContainer h1 {
 
+.sidebar {
+	height: 100vh;
+}
+
+.sidenav div {
+	color: white;
+}
+
+#signOutContainer h1 {
 	font-family: monospace;
 	font-style: oblique;
 	font-variant: small-caps;
@@ -54,35 +62,31 @@
 }
 
 #chatFeed {
-	display: inline-block;
-  margin:0 auto;
-  width: 800px;
-	padding: 14px;
-	/*border-style: ridge;*/
-	border-width: 10px;
-
-
-
-}
-.scroll {
-	overflow: scroll;
-	background-color: #FFE4C4;
+	background-color: lightgray;
+	height: 100vh;
 }
 
-.nav11 {
-	background-color: red;
+.messages {
+  	overflow-y: scroll;
 }
 
-
-
-#navbarNavAltMarkup {
-
-	color: white;
+.chat-color {
+	background: #4D394B;
 }
 
-#nav1 {
-	float: right;
-	color: red;
+.nav .nav-link,
+.nav .nav-header {
+	border-radius: 0px 5px 5px 0px;
+	color: #AB9BA9;
+}
+
+.nav .active {
+	background: #4C9689;
+	color: #FFFFFF;
+}
+
+.nav .nav-link:hover:not(.active) {
+	background: #3E313C;
 }
 
 .sign {
@@ -96,5 +100,6 @@
 
 #signContainer {
 	margin-top: 100px;
-	padding-left: 300px
-	}
+
+	float: right;
+}

@@ -6,8 +6,7 @@ import ChatInput from './chat-input';
 export default class ChatFeed extends Component {
   render() {
     return (
-      <div id="chatFeed">
-        <h3>CHAT</h3>
+      <div className="d-flex flex-column m-0 p-3" id="chatFeed">
         <ChatMessages messages={this.props.messages} />
         <ChatInput
           user={this.props.user}
