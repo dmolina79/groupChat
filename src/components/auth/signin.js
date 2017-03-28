@@ -38,8 +38,8 @@ class Signin extends Component {
 		const { handleSubmit, fields: { email, password } } = this.props;
 
 		return (
-			<div className="jumbotron py-6" id="signContainer">
-				<div className="sign text-center">
+			<div className="jumbotron">
+				<div className="text-center">
 					<h1>Sign in to Group Chat</h1>
 					<h3>Enter your email and password</h3>
 				</div>
@@ -52,7 +52,7 @@ class Signin extends Component {
 						<label htmlFor="Password">Password:</label>
 						<input {...password} type="password" className="form-control" placeholder="Enter password" />	
 					</div>
-					<button type="submit" className="btn btn-outline-success col mt-3">Sign in</button>
+					<button type="submit" className="btn btn-outline-success col">Sign in</button>
 					{this.renderAlert()}
 
 				</form>

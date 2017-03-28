@@ -72,18 +72,15 @@ class Signup extends Component {
 		const { handleSubmit } = this.props;
 
 		return (
-			<div className="jumbotron py-6" id="signContainer">
-				<div className="sign text-center">
+			<div className="jumbotron">
+				<div className="text-center">
 					<h1>Sign up to Group Chat</h1>
 					<h3>Enter your email and password</h3>
 				</div>
 				<form className="col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3" onSubmit={handleSubmit(this.handleFormSubmit)}>
-					
 					{ _.map(FIELDS, this.renderField)}
-					
-					<button type="submit" className="btn btn-outline-success col mt-3">Sign Up!</button>
+					<button type="submit" className="btn btn-outline-success col">Sign Up!</button>
 					{this.renderAlert()}
-
 				</form>
 			</div>
 		);
