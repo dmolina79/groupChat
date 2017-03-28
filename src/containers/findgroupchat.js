@@ -40,13 +40,12 @@ class FindGroupChat extends Component {
     return (
       <div className="jumbotron py-6">
 				<div className="text-center">
-					<h1>Find Your GroupChat</h1>
+					<h1>Join an existing team</h1>
 				</div>
-				<form className="col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3" onSubmit={this.findGroup}>
-					<div className="form-group" id="GroupChat">
+				<form className="GroupChat col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3" onSubmit={this.findGroup}>
+					<div className="form-group">
 						<input
               value={this.state.groupName}
-              id="GroupChat1"
               className="form-control"
               placeholder="Enter your GroupChat"
               onChange={event => this.onInputChange(event.target.value)}
@@ -54,8 +53,8 @@ class FindGroupChat extends Component {
 					</div>
 					<button type="submit" className="btn btn-outline-success col mt-3">Find</button>
 					{this.renderAlert()}
-
 				</form>
+        <img alt="img" src="img/groupchat2.jpg" height="300" width="300" />
 			</div>
     );
   }

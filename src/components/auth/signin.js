@@ -38,9 +38,8 @@ class Signin extends Component {
 		const { handleSubmit, fields: { email, password } } = this.props;
 
 		return (
-
-			<div className="jumbotron py-6">
-				<div className="text-center">
+			<div className="jumbotron py-6" id="signContainer">
+				<div className="sign text-center">
 					<h1>Sign in to Group Chat</h1>
 					<h3>Enter your email and password</h3>
 				</div>

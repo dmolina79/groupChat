@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
-
-
 import ChatSidenav from '../components/chat-sidenav';
 import ChatFeed from '../components/chat-feed';
 
@@ -61,8 +59,10 @@ class ChatRoom extends Component {
   }
 }
 
-const mapStateToProps = ({ auth, chatRoom }) => {
-  const { loading, groupChatInfo, chatInfo } = chatRoom;
+const mapStateToProps = ({ auth, chatRoom, activeGroup }) => {
+  const { loading, chatInfo } = chatRoom;
+  const { groupChatInfo } = activeGroup;
+  
   return {
     loading,
     groupChatInfo,

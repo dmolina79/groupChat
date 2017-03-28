@@ -12,6 +12,14 @@
 	height: 500px;
 	background-position: top center;
 }
+.sorryface {
+	height: 100px;
+	width: 100px;
+}
+#signOutContainer {
+	padding-top: 150px;
+	float: right;
+}
 
 .sidebar {
 	height: 100vh;
@@ -19,6 +27,38 @@
 
 .sidenav div {
 	color: white;
+}
+
+#signOutContainer h1 {
+	font-family: monospace;
+	font-style: oblique;
+	font-variant: small-caps;
+}
+
+#chatRoomContainer {
+	width:100%;
+	padding: 0px 5px;
+}
+
+.GroupChat {
+	float: right;
+	padding-right: 300px;
+	padding-top: 100px;
+}
+.GroupChat h1 {
+	font-family: cursive;
+}
+#buttonCreateGroup {
+	float: right;
+	margin-top: 10px;
+}
+
+.sidenav {
+	float: left;
+	width: 250px;
+	height: 100%;
+	margin-right: 30px;
+	margin-left : 5px;
 }
 
 #chatFeed {
@@ -47,4 +87,18 @@
 
 .nav .nav-link:hover:not(.active) {
 	background: #3E313C;
+}
+
+.sign {
+	margin-top: 50px;
+	text-align: center;
+	background-color: #008B8B;
+	color: white;
+	font-family: fantasy;
+	font-size: 15px;
+}
+
+#signContainer {
+	margin-top: 100px;
+	float: right;
 }

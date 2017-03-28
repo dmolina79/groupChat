@@ -18,6 +18,7 @@ import reducers from './reducers';
 import FindGroupChat from './containers/findgroupchat';
 import CreateGroupChat from './containers/creategroupchat';
 import ChatRoom from './containers/chatroom';
+import ModalExample from './components/ModalExample';
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 const store = createStoreWithMiddleware(reducers);
@@ -37,6 +38,7 @@ ReactDOM.render(
 			<Route path="signup" component={Signup} />
 			<Route path="findgroupchat" component={RequireAuth(FindGroupChat)} />
 			<Route path="creategroupchat" component={RequireAuth(CreateGroupChat)} />
+			<Route path="modal" component={ModalExample} />
 			{/* Default not found route */}
 			<Route path="*" component={NotFound} />
 		</Route>
