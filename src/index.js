@@ -45,4 +45,4 @@ ReactDOM.render(
 
 	</Router>
 </Provider>
-, document.querySelector('.body'));
+, document.querySelector('.container'));
