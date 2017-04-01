@@ -62,12 +62,13 @@
 }
 
 #chatFeed {
-	background-color: lightgray;
+	background-color:#fff;
 	height: 100vh;
 }
 
 .messages {
   	overflow-y: scroll;
+		margin-bottom: 60px;
 }
 
 .chat-color {
@@ -102,4 +103,11 @@
 	margin-top: 100px;
 
 	float: right;
+}
+
+#input {
+	position: absolute;
+    bottom: 0;
+    width: 95%;
+		margin-bottom: 10px;
 }
