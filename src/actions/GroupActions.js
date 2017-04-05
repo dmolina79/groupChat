@@ -80,7 +80,7 @@ export function createGroup(name) {
 
 		Promise.all([createGroupPromise, createChatPromise])
 			.then((results) => {
-					browserHistory.push(`/chatroom/${name}`);
+					browserHistory.push(`/chatroom/${name}/default`);
 					dispatch({ type: GROUP_CREATED,
 										payload: results[0]
 									});
@@ -99,7 +99,7 @@ export function findGroupChat(name) {
 		//promise-> then = success | catch = fail
 		.then((snapshot) => {
 			if (snapshot.hasChild(name)) {
-					browserHistory.push(`/chatroom/${name}`);
+					browserHistory.push(`/chatroom/${name}/default`);
 					dispatch(groupFound());
 				} else {
 					dispatch({ type: GROUP_NOT_FOUND });

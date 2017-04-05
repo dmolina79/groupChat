@@ -74,9 +74,9 @@ export function groupChatLoadFailed(error) {
 	};
 }
 
-export function fetchGroupChatInfo(name) {
-	const groupChatInfo = `entities/groups/${name}`;
-	const groupChatId = `entities/chats/${name}-default`;
+export function fetchGroupChatInfo(group, channel) {
+	const groupChatInfo = `entities/groups/${group}`;
+	const groupChatId = `entities/chats/${group}-${channel}`;
 
 	return function (dispatch) {
 		dispatch({ type: CHAT_LOADING });

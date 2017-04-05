@@ -7,17 +7,29 @@ import ChatFeed from '../components/chat-feed';
 class ChatRoom extends Component {
   constructor(props) {
     super(props);
-
+    
+    this.state = {
+      selectedChannel: 'default'
+    }
     this.sendHandler = this.sendHandler.bind(this);
   }
 
   componentWillMount() {
-    this.props.fetchGroupChatInfo(this.props.params.group);
+    console.log("Cargando Component : ", this.props.params.channel);
+    this.props.fetchGroupChatInfo(this.props.params.group, this.props.params.channel);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if(this.state.selectedChannel !== nextProps.params.channel) {
+      console.log("Cargando Next Props : ", nextProps);
+      this.props.fetchGroupChatInfo(nextProps.params.group, nextProps.params.channel);
+      this.setState({selectedChannel: nextProps.params.channel});
+    }
   }
 
   sendHandler(message) {
-    const { name, selectedChannel } = this.props.groupChatInfo;
-    const chatId = `${name}-${selectedChannel}`;
+    const { name } = this.props.groupChatInfo;
+    const chatId = `${name}-${this.props.params.channel}`;
     this.props.postMessage(message, chatId);
   }
 
@@ -28,7 +40,7 @@ class ChatRoom extends Component {
   }
 
   render() {
-    const { name, channels, selectedChannel } = this.props.groupChatInfo;
+    const { name, channels } = this.props.groupChatInfo;
     const { messages } = this.props.chatInfo;
     const { user } = this.props;
 
@@ -39,7 +51,7 @@ class ChatRoom extends Component {
         <div className="row sidebar">
           <div className="col-sm-3 col-md-2 pl-0 chat-color">
             <ChatSidenav
-              selectedChannel={selectedChannel}
+              selectedChannel={this.props.params.channel}
               name={name}
               channels={channels}
               groupies={['Douglas', 'Pamela', 'Alex', 'Gabriel']}

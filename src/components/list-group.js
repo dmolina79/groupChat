@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link, browserHistory } from 'react-router';
 
 export default class ListGroup extends Component {
   constructor(props) {
@@ -21,13 +22,17 @@ export default class ListGroup extends Component {
     if (this.props.selectable) {
       toRender = this.props.list.map((item) => {
         return (
-          <a href="/" className={this.isItemActive(item)}>{item}</a>
+          <Link key={item}
+            to={`${this.props.prefixRoute}/${item}`}
+            className={this.isItemActive(item)}>
+              {item}
+          </Link>
         );
       });
     } else {
       toRender = this.props.list.map((item) => {
         return (
-          <span className="nav-link pl-4 py-2 my-0 h5">{item}</span>
+          <span key={item} className="nav-link pl-4 py-2 my-0 h5">{item}</span>
         );
       });
     }
