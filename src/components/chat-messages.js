@@ -4,6 +4,17 @@ import Message from './message';
 
 
 export default class ChatMessages extends Component {
+  componentDidUpdate() {
+    this.scrollToBottom();
+  }
+
+  scrollToBottom() {
+    const scrollHeight = this.messageList.scrollHeight;
+    const height = this.messageList.clientHeight;
+    const maxScrollTop = scrollHeight - height;
+    this.messageList.scrollTop = maxScrollTop > 0 ? maxScrollTop : 0;
+  }
+
   render() {
     const messages = this.props.messages.map((message, i) => {
       return (
@@ -16,9 +27,14 @@ export default class ChatMessages extends Component {
     });
 
     return (
-      <div className="messages">
+      <div
+        className="messages"
+        ref={(div) => {
+          this.messageList = div;
+        }}
+      >
         { messages }
-      
+
       </div>
     );
   }
