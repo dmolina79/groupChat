@@ -23,6 +23,7 @@ export default class ChatSidenav extends Component {
           selectable={true}
           selectedItem={selectedChannel}
           prefixRoute={`/chatroom/${name}`}
+          itemName="Channel"
         />
         <ListGroup
           className="list-group"
@@ -30,6 +31,8 @@ export default class ChatSidenav extends Component {
           list={groupies}
           selectable={false}
           selectedItem=""
+          prefixRoute={`/chatroom/${name}`}
+          itemName="Groupie"
         />
       </div>
     );

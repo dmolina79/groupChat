@@ -45,4 +45,4 @@ ReactDOM.render(
 
 	</Router>
 </Provider>
-, document.querySelector('.container-fluid'));
+, document.querySelector('.contenedor'));

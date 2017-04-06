@@ -25,7 +25,7 @@
 	height: 100vh;
 }
 
-.sidenav div {
+.sidenav .header {
 	color: white;
 }
 
@@ -51,14 +51,6 @@
 #buttonCreateGroup {
 	float: right;
 	margin-top: 10px;
-}
-
-.sidenav {
-	float: left;
-	width: 250px;
-	height: 100%;
-	margin-right: 30px;
-	margin-left : 5px;
 }
 
 #chatFeed {
@@ -90,6 +82,20 @@
 	background: #3E313C;
 }
 
+.icon-button {
+	background: #4D394B;
+	border-style: none;
+	color: #AB9BA9;
+}
+
+.icon-button:hover {
+	color: #FFFFFF;
+}
+
+.icon-button:focus {
+  outline: none;
+}
+
 .sign {
 	margin-top: 50px;
 	text-align: center;
@@ -110,4 +116,8 @@
     bottom: 0;
     width: 95%;
 		margin-bottom: 10px;
+}
+
+.form-control-label {
+	color: black;
 }
