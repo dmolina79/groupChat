@@ -12,6 +12,7 @@ class ChatRoom extends Component {
       selectedChannel: 'default'
     }
     this.sendHandler = this.sendHandler.bind(this);
+    this.submitCreateChannel = this.submitCreateChannel.bind(this);
   }
 
   componentWillMount() {
@@ -31,6 +32,11 @@ class ChatRoom extends Component {
     const { name } = this.props.groupChatInfo;
     const chatId = `${name}-${this.props.params.channel}`;
     this.props.postMessage(message, chatId);
+  }
+
+  submitCreateChannel(channel) {
+    // this.props.createGroup(this.state.groupName);
+    console.log("creating group ", channel);
   }
 
   renderLoadingMsg() {
@@ -55,6 +61,7 @@ class ChatRoom extends Component {
               name={name}
               channels={channels}
               groupies={['Douglas', 'Pamela', 'Alex', 'Gabriel']}
+              channelAction={this.submitCreateChannel}
             />
           </div>
           <div className="col-sm-9 col-md-10 p-0">

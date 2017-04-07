@@ -9,7 +9,8 @@ export default class ChatSidenav extends Component {
       channels,
       selectedChannel,
       groupies,
-      selectionHandler
+      selectionHandler,
+      channelAction
     } = this.props;
 
 
@@ -24,6 +25,7 @@ export default class ChatSidenav extends Component {
           selectedItem={selectedChannel}
           prefixRoute={`/chatroom/${name}`}
           itemName="Channel"
+          modalAction={channelAction}
         />
         <ListGroup
           className="list-group"

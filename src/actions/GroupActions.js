@@ -110,3 +110,25 @@ export function findGroupChat(name) {
 			});
 		};
 }
+
+// export function createChannel(group, channel) {
+// 	return function (dispatch) {
+// 		const createChannelPromise = getFirebaseDb()
+// 																.child(`entities/groups/${group}`)
+// 																.set(createGroupData(group));
+// 		const createChatPromise = getFirebaseDb()
+// 																.child('entities/chats')
+// 																.update(createChatData(group));
+
+// 		Promise.all([createGroupPromise, createChatPromise])
+// 			.then((results) => {
+// 					browserHistory.push(`/chatroom/${name}/default`);
+// 					dispatch({ type: GROUP_CREATED,
+// 										payload: results[0]
+// 									});
+// 				})
+// 				.catch(error => {
+// 					console.log(`error creating group. Detail ${error}`);
+// 				});
+// 		};
+// }

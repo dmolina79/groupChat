@@ -16,3 +16,5 @@ export const CHAT_LOAD_FAIL = 'CHAT_LOAD_FAIL';
 export const POST_MSG_LOADING = 'POST_MSG_LOADING';
 export const POST_MSG = 'POST_MSG';
 export const POST_MSG_FAIL = 'POST_MSG_FAIL';
+
+//channel actions
