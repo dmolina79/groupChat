@@ -15,6 +15,8 @@ export default class ListGroup extends Component {
 	onModalSubmit(event) {
     	event.preventDefault();
 		this.props.modalAction(this.state.modalInput);
+		$(`#add${this.props.group}`).modal('hide');
+		this.setState({ modalInput: '' })
   	}
 
 	onModalInputChange(modalInput) {

@@ -35,8 +35,8 @@ class ChatRoom extends Component {
   }
 
   submitCreateChannel(channel) {
-    // this.props.createGroup(this.state.groupName);
-    console.log("creating group ", channel);
+    this.props.createChannel(this.props.groupChatInfo.name, channel);
+    console.log('creating ', this.props.groupChatInfo.name, channel);
   }
 
   renderLoadingMsg() {

@@ -18,3 +18,4 @@ export const POST_MSG = 'POST_MSG';
 export const POST_MSG_FAIL = 'POST_MSG_FAIL';
 
 //channel actions
+export const CHANNEL_CREATED = 'CHANNEL_CREATED';
