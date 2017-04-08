@@ -7,24 +7,22 @@ import ChatFeed from '../components/chat-feed';
 class ChatRoom extends Component {
   constructor(props) {
     super(props);
-    
+
     this.state = {
       selectedChannel: 'default'
-    }
+    };
     this.sendHandler = this.sendHandler.bind(this);
     this.submitCreateChannel = this.submitCreateChannel.bind(this);
   }
 
   componentWillMount() {
-    console.log("Cargando Component : ", this.props.params.channel);
     this.props.fetchGroupChatInfo(this.props.params.group, this.props.params.channel);
   }
 
   componentWillReceiveProps(nextProps) {
-    if(this.state.selectedChannel !== nextProps.params.channel) {
-      console.log("Cargando Next Props : ", nextProps);
+    if (this.state.selectedChannel !== nextProps.params.channel) {
       this.props.fetchGroupChatInfo(nextProps.params.group, nextProps.params.channel);
-      this.setState({selectedChannel: nextProps.params.channel});
+      this.setState({ selectedChannel: nextProps.params.channel });
     }
   }
 

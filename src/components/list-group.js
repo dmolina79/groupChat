@@ -71,7 +71,7 @@ export default class ListGroup extends Component {
 							<div className="modal-body">
 								<div className="form-group">
 									<label htmlFor="recipient-name" className="form-control-label">{this.props.itemName}:</label>
-									<input type="text" className="form-control" id="recipient-name" 
+									<input type="text" className="form-control" id="recipient-name"
 										value={this.state.modalInput}
 										onChange={event => this.onModalInputChange(event.target.value)}
 									/>
@@ -94,10 +94,12 @@ export default class ListGroup extends Component {
 				<div className="nav-header text-uppercase pl-4 pt-4 h4">
 					<span className="d-flex align-items-center">
 						{this.props.group}
-						<button type="button"
+						<button
+							type="button"
 							className="icon-button material-icons ml-auto"
 							data-toggle="modal"
-							data-target={`#add${this.props.group}`}>
+							data-target={`#add${this.props.group}`}
+						>
 							add_circle_outline
             </button>
 						{this.renderModal()}
