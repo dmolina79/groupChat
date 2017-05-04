@@ -40,12 +40,13 @@ export function postMessage(message, chatId) {
 export function groupChatInfoLoaded(groupSnapShot) {
 	//our object to store the chatRoom info
 	const channels = groupSnapShot.child('channels').val();
+	const groupies = groupSnapShot.child('groupies').val();
 
 	const groupChatInfo = {
 		name: groupSnapShot.key,
 		channels: _.keys(channels),
+		groupies: _.keys(groupies),
 		selectedChannel: 'default',
-		//groupies: ['Douglas', 'Pamela', 'Alex', 'Gabriel']
 	};
 
 	return {

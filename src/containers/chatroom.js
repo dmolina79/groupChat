@@ -13,6 +13,7 @@ class ChatRoom extends Component {
     };
     this.sendHandler = this.sendHandler.bind(this);
     this.submitCreateChannel = this.submitCreateChannel.bind(this);
+    this.submitAddGroupie = this.submitAddGroupie.bind(this);
   }
 
   componentWillMount() {
@@ -34,7 +35,10 @@ class ChatRoom extends Component {
 
   submitCreateChannel(channel) {
     this.props.createChannel(this.props.groupChatInfo.name, channel);
-    console.log('creating ', this.props.groupChatInfo.name, channel);
+  }
+
+  submitAddGroupie(groupie) {
+    this.props.addGroupie(this.props.groupChatInfo.name, groupie);
   }
 
   renderLoadingMsg() {
@@ -44,11 +48,10 @@ class ChatRoom extends Component {
   }
 
   render() {
-    const { name, channels } = this.props.groupChatInfo;
+    const { name, channels, groupies } = this.props.groupChatInfo;
     const { messages } = this.props.chatInfo;
     const { user } = this.props;
 
-    console.log('messages ', messages);
     return (
       <div className="container-fluid">
         {this.renderLoadingMsg()}
@@ -58,8 +61,9 @@ class ChatRoom extends Component {
               selectedChannel={this.props.params.channel}
               name={name}
               channels={channels}
-              groupies={['Douglas', 'Pamela', 'Alex', 'Gabriel']}
+              groupies={groupies}
               channelAction={this.submitCreateChannel}
+              groupieAction={this.submitAddGroupie}
             />
           </div>
           <div className="col-sm-9 col-md-10 p-0">

@@ -4,6 +4,10 @@ import { reduxForm } from 'redux-form';
 import * as actions from '../../actions';
 
 const FIELDS = {
+	username: {
+		type: 'text',
+		label: 'Username'
+	},
 	email: {
 		type: 'text',
 		label: 'Email'
@@ -61,7 +65,7 @@ class Signup extends Component {
 
 			<div className="form-group" key={field} className={this.showFormIsValid(fieldHelper)}>
 				<label htmlFor={fieldConfig.label}>{fieldConfig.label}</label>
-				<input type={fieldConfig.type} className="form-control" {...fieldHelper} />
+				<input type={fieldConfig.type} className="form-control" {...fieldHelper} placeholder={`${fieldConfig.label}`} />
 				{this.showError(fieldHelper)}
 			</div>
 
@@ -76,7 +80,7 @@ class Signup extends Component {
 			<div className="jumbotron">
 				<div className="text-center">
 					<h1>Sign up to Group Chat</h1>
-					<h3>Enter your email and password</h3>
+					<h3>Create your account for free!</h3>
 				</div>
 				<form className="col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3" onSubmit={handleSubmit(this.handleFormSubmit)}>
 					{ _.map(FIELDS, this.renderField)}

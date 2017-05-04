@@ -10,6 +10,7 @@ const INITIAL_STATE = {
   groupChatInfo: {
     name: '',
     channels: [],
+    groupies: [],
     selectedChannel: 'default'
   }
 };
