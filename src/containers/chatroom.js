@@ -55,8 +55,8 @@ class ChatRoom extends Component {
     return (
       <div className="container-fluid">
         {this.renderLoadingMsg()}
-        <div className="row sidebar">
-          <div className="col-sm-3 col-md-2 pl-0 chat-color">
+        <div className="row chatview">
+          <div className="sidebar col-xs-12 col-md-3 col-lg-2 pl-0">
             <ChatSidenav
               selectedChannel={this.props.params.channel}
               name={name}
@@ -66,14 +66,13 @@ class ChatRoom extends Component {
               groupieAction={this.submitAddGroupie}
             />
           </div>
-          <div className="col-sm-9 col-md-10 p-0">
+          <div className="col p-0">
             <ChatFeed
               user={user}
               messages={messages}
               sendHandler={this.sendHandler}
             />
           </div>
-          { /*<ChatterToolBar /> */}
         </div>
 
       </div>

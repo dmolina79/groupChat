@@ -11,13 +11,14 @@
 	width: 100px;
 }
 
-.sidebar {
+.chatview {
 	height: 100vh;
 }
 
 .sidenav .header {
 	color: #FFFFFF;
 }
+
 
 #chatRoomContainer {
 	width:100%;
@@ -41,12 +42,14 @@
 
 .messages {
   	overflow-y: scroll;
-	margin-bottom: 60px;
 	background-color: #FFFFFF;
+	height: calc(100vh - 65px);
 }
 
-.chat-color {
+.sidebar {
 	background-color: #FC4445;
+	border: solid 3px;
+	min-width: 300px;
 }
 
 .nav .nav-link,
@@ -55,9 +58,28 @@
 	color: #3E313C;
 }
 
+.navbar-toggler{
+	color: #FFFFFF;
+}
+
+.navbar-toggler:focus{
+	outline: 0;
+}
+
+/* change navbar-toggler inside lines color (stroke) */
+.navbar span.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='black' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+/* change hamburger button border color */
+button.navbar-toggler.navbar-toggler-right {
+  border-color: black;
+}
+
 .nav .active {
 	background-color: #CAFAFE;
 	color: #3E313C;
+	border: solid 3px #0E0B16;
 }
 
 .nav .nav-link:hover:not(.active) {
@@ -93,14 +115,14 @@
 
 .btn-primary {
 	background-color: #FC4445;
-	border-color: #FC4445;
+	border: solid 3px #0E0B16;
 	border-radius: 25px;
 	margin: 0;
 }
 
 .btn-primary:hover {
 	background-color: #b00303;
-	border-color: #b00303;
+	border: solid 3px #0E0B16;
 }
 
 .jumbotron {
@@ -111,6 +133,7 @@
 
 .navbar {
 	background-color: #FC4445;
+	border: solid 3px;
 }
 
 a {
