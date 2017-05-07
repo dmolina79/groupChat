@@ -16,7 +16,7 @@ export function signinUser({ email, password }) {
     getFirebaseAuth().signInWithEmailAndPassword(email, password)
       // ==PROMISE
       .then((user) => {
-        dispatch(authUser({ email: user.email }));
+        dispatch(authUser({ email: user.email, displayName: user.displayName }));
 
 
         browserHistory.push('/');
@@ -34,7 +34,7 @@ export function signupUser({ email, password, username }) {
         user.updateProfile({
           displayName: username
         }).then(() => {
-          dispatch(authUser({ email: user.email }));
+          dispatch(authUser({ email: user.email, displayName: username }));
           browserHistory.push('/');
         });
       })
@@ -62,7 +62,7 @@ export function verifyAuth() {
   return function (dispatch) {
     getFirebaseAuth().onAuthStateChanged(user => {
       if (user) {
-        dispatch(authUser({ email: user.email }));
+        dispatch(authUser({ email: user.email, displayName: user.displayName }));
       } else {
         dispatch(signoutUser());
       }
