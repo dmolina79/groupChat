@@ -22,6 +22,7 @@ export default class ChatMessages extends Component {
           key={i}
           username={message.username}
           message={message.message}
+          time={message.dateTime}
         />
       );
     });

@@ -1,39 +1,24 @@
 
-.banner1 {
-	background: url(../img/banner.jpg);
-	height: 250px;
-	background-size: cover;
-	background-position: center;
+.expand {
+	position: fixed;
+	height: 100vh;
+	width: 100%;
+	top: 0;
 }
 
-.banner2 {
-	background: url(../img/img2.jpg);
-	background-repeat: no-repeat;
-	height: 500px;
-	background-position: top center;
-}
 .sorryface {
 	height: 100px;
 	width: 100px;
 }
-#signOutContainer {
-	padding-top: 150px;
-	padding-left: 300px;
-}
 
-.sidebar {
+.chatview {
 	height: 100vh;
 }
 
 .sidenav .header {
-	color: white;
+	color: #FFFFFF;
 }
 
-#signOutContainer h1 {
-	font-family: monospace;
-	font-style: oblique;
-	font-variant: small-caps;
-}
 
 #chatRoomContainer {
 	width:100%;
@@ -45,47 +30,67 @@
 	padding-right: 300px;
 	padding-top: 100px;
 }
+
 .GroupChat h1 {
 	font-family: cursive;
 }
-#buttonCreateGroup {
-	float: right;
-	margin-top: 10px;
-}
 
 #chatFeed {
-	background-color:#fff;
+	background-color:#FFFFFF;
 	height: 100vh;
 }
 
 .messages {
   	overflow-y: scroll;
-		margin-bottom: 60px;
+	background-color: #FFFFFF;
+	height: calc(100vh - 65px);
 }
 
-.chat-color {
-	background: #4D394B;
+.sidebar {
+	background-color: #FC4445;
+	border: solid 3px;
+	min-width: 300px;
 }
 
 .nav .nav-link,
 .nav .nav-header {
 	border-radius: 0px 5px 5px 0px;
-	color: #AB9BA9;
+	color: #3E313C;
 }
 
-.nav .active {
-	background: #4C9689;
+.navbar-toggler{
 	color: #FFFFFF;
 }
 
+.navbar-toggler:focus{
+	outline: 0;
+}
+
+/* change navbar-toggler inside lines color (stroke) */
+.navbar span.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='black' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+/* change hamburger button border color */
+button.navbar-toggler.navbar-toggler-right {
+  border-color: black;
+}
+
+.nav .active {
+	background-color: #CAFAFE;
+	color: #3E313C;
+	border: solid 3px #0E0B16;
+}
+
 .nav .nav-link:hover:not(.active) {
-	background: #3E313C;
+	background-color: #b00303;
+	color: #FFFFFF;
 }
 
 .icon-button {
-	background: #4D394B;
+	background-color: #FC4445;
 	border-style: none;
-	color: #AB9BA9;
+	color: #3E313C;
 }
 
 .icon-button:hover {
@@ -96,28 +101,62 @@
   outline: none;
 }
 
-.sign {
-	margin-top: 50px;
-	text-align: center;
-	background-color: #008B8B;
-	color: white;
-	font-family: fantasy;
-	font-size: 15px;
-}
-
-#signContainer {
-	margin-top: 100px;
-
-	float: right;
-}
-
 #input {
 	position: absolute;
     bottom: 0;
     width: 95%;
-		margin-bottom: 10px;
+	margin-bottom: 10px;
 }
 
-.form-control-label {
-	color: black;
+
+.message-color {
+  color: #0E0B16;
 }
+
+.btn-primary {
+	background-color: #FC4445;
+	border: solid 3px #0E0B16;
+	border-radius: 25px;
+	margin: 0;
+}
+
+.btn-primary:hover {
+	background-color: #b00303;
+	border: solid 3px #0E0B16;
+}
+
+.jumbotron {
+	background-color: #CAFAFE;
+	color: #0E0B16;
+	border-radius: 0;
+}
+
+.navbar {
+	background-color: #FC4445;
+	border: solid 3px;
+}
+
+a {
+	color: #0E0B16;
+}
+
+a:hover, a:focus {
+	color: #CAFAFE;
+}
+
+.navbar-nav .nav-link:hover {
+	background-color: #FC4445;
+	color: #CAFAFE;
+	border-radius: 5px;
+}
+
+.navbar-nav .nav-link:focus {
+	background-color: #FC4445;
+	color: #CAFAFE;
+	border-radius: 5px;
+}
+
+.form {
+	max-width: 450px;
+}
+

@@ -5,7 +5,8 @@ import {
 	GROUP_CREATED,
 	GROUP_FOUND,
 	GROUP_NOT_FOUND,
-	CHANNEL_CREATED
+	CHANNEL_CREATED,
+	GROUPIE_ADDED
 } from './types';
 
 function getFirebaseAuth() {
@@ -23,7 +24,7 @@ export function groupFound() {
 }
 
 function createGroupData(name) {
-	const { uid } = getFirebaseAuth().currentUser;
+	const { uid, displayName } = getFirebaseAuth().currentUser;
 	const defaultChannelId = `${name}-default`;
 	const commonChannelId = `${name}-common`;
 
@@ -38,6 +39,12 @@ function createGroupData(name) {
 			common: {
 				name: 'common',
 				chatId: commonChannelId
+			}
+		},
+		groupies: {
+			[displayName]: {
+				username: displayName,
+				uid
 			}
 		}
 	};
@@ -144,7 +151,7 @@ function createChannelData(group, channel) {
 	const channelData = {
 		[channel]: {
 			name: channel,
-			chatId: chatId
+			chatId
 		}
 	};
 
@@ -165,4 +172,23 @@ function createChannelChatData(group, channel) {
 	};
 
 	return chatData;
+}
+
+export function addGroupie(group, groupie) {
+	return function (dispatch) {
+		const addGroupiePromise = getFirebaseDb()
+			.child(`entities/groups/${group}/groupies`)
+			.update({ [groupie]: { uid: 'uid', username: groupie } });
+
+		Promise.all([addGroupiePromise])
+			.then((results) => {
+				dispatch({
+					type: GROUPIE_ADDED,
+					payload: results[0]
+				});
+			})
+			.catch(error => {
+				console.log(`error creating groupie. Detail ${error}`);
+			});
+	};
 }

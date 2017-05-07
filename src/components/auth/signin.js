@@ -38,25 +38,27 @@ class Signin extends Component {
 		const { handleSubmit, fields: { email, password } } = this.props;
 
 		return (
-			<div className="jumbotron">
-				<div className="text-center">
-					<h1>Sign in to Group Chat</h1>
-					<h3>Enter your email and password</h3>
+			<div className="jumbotron d-flex flex-column justify-content-center expand">
+				<div className="row text-center">
+					<h1 className="col">Sign in to Group Chat</h1>
 				</div>
-				<form className="col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3" onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
-					<div className="form-group">
 
-						<label htmlFor="Email" id="email">Email:</label>
-						<input {...email} className="form-control" placeholder="Enter E-mail" />
+				<div className="row justify-content-center">
+					<div className="form col-12">
+						<form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
+							<div className="form-group mb-2">
+								<input {...email} className="form-control" placeholder="Email" />
+							</div>
+							<div className="form-group mb-2">
+								<input {...password} type="password" className="form-control" placeholder="Password" />
+							</div>
+							<div className="form-group">
+								<button type="submit" className="btn btn-primary col-12">Sign in</button>
+							</div>
+							{this.renderAlert()}
+						</form>
 					</div>
-					<div className="form-group">
-						<label htmlFor="Password">Password:</label>
-						<input {...password} type="password" className="form-control" placeholder="Enter password" />
-					</div>
-					<button type="submit" className="btn btn-outline-success col">Sign in</button>
-					{this.renderAlert()}
-
-				</form>
+				</div>
 			</div>
 		);
 	}

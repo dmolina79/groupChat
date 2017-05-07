@@ -7,6 +7,7 @@ export const FIND_GROUP = 'find_group';
 export const GROUP_CREATED = 'create_group';
 export const GROUP_FOUND = 'found_groups';
 export const GROUP_NOT_FOUND = 'groups_not_found';
+export const GROUPIE_ADDED = 'groupie_added';
 
 //chat room actions
 export const CHAT_LOADING = 'CHAT_LOADING';

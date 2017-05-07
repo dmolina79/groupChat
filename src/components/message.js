@@ -1,10 +1,25 @@
 import React, { Component } from 'react';
+import Moment from 'moment';
 
 export default class Message extends Component {
+  constructor(props) {
+    super(props);
+
+    this.formatTime = this.formatTime.bind(this);
+  }
+
+  formatTime() {
+    const date = Moment(this.props.dateTime).calendar();
+
+    return date;
+  }
+
   render() {
     return (
       <div>
-        { this.props.username } : { this.props.message }
+        <span className='message-color h5'><strong>{this.props.username}</strong></span>
+        <span className='text-muted h6 pl-1'><small>{this.formatTime()}</small></span>
+        <p className='message-color'>{this.props.message}</p>
       </div>
     );
   }

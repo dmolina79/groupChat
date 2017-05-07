@@ -29,11 +29,11 @@ class Header extends Component {
 		return (
 
 
-			<nav className="navbar navbar-toggleable navbar-inverse bg-inverse sticky-top">
+			<nav className="navbar navbar-toggleable sticky-top">
 				<button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 					<span className="navbar-toggler-icon"></span>
 				</button>
-				<a className="navbar-brand" href="/">GroupChat</a>
+				<Link className="navbar-brand" to="/" key="0"><strong>GroupChat</strong></Link>
 				<div className="collapse navbar-collapse" id="navbarNav">
 					<div className="navbar-nav ml-auto text-center">
 						{this.renderLinks()}
