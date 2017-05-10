@@ -9,9 +9,7 @@ export default class Message extends Component {
   }
 
   formatTime() {
-    const date = Moment(this.props.dateTime).calendar();
-
-    return date;
+    return Moment(this.props.time).calendar();
   }
 
   render() {
