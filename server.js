@@ -1,6 +1,6 @@
 var path = require('path');
 var express = require('express');
-var PORT = process.env.PORT || 8080 ;
+var PORT = process.env.PORT || 8080;
 var app = express();
 
 // using webpack-dev-server and middleware in development environment
@@ -10,7 +10,7 @@ var app = express();
   var webpack = require('webpack');
   var config = require('./webpack.config');
   var compiler = webpack(config);
-  
+
   app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: config.output.publicPath }));
   app.use(webpackHotMiddleware(compiler));
 }*/
