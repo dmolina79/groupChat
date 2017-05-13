@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 
 import Message from './message';
 
-
 export default class ChatMessages extends Component {
+  
   componentDidUpdate() {
     this.scrollToBottom();
   }
@@ -34,8 +34,7 @@ export default class ChatMessages extends Component {
           this.messageList = div;
         }}
       >
-        { messages }
-
+        {messages}
       </div>
     );
   }
