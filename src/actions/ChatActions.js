@@ -2,7 +2,7 @@ import axios from 'axios';
 import _ from 'lodash';
 import { firebaseRef } from '../firebase';
 
-const IFRAMELY_API_KEY = '26925b59f9fccdf9ef3324';
+const IFRAMELY_API_KEY = process.env.IFRAMELY_API_KEY;
 
 import {
 	CHAT_LOADING,
