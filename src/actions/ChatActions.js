@@ -1,6 +1,8 @@
-//import { browserHistory } from 'react-router';
+import axios from 'axios';
 import _ from 'lodash';
 import { firebaseRef } from '../firebase';
+
+const IFRAMELY_API_KEY = '26925b59f9fccdf9ef3324';
 
 import {
 	CHAT_LOADING,
@@ -17,22 +19,54 @@ function getFirebaseDb() {
 }
 
 export function postMessage(message, chatId) {
-	const timeStamp = Date.now();
-	const msg = { ...message, dateTime: timeStamp };
 	return function (dispatch) {
-		getFirebaseDb()
-			.child(`entities/chats/${chatId}/${timeStamp}`)
-			.set(msg)
-			.then(() => {
-					dispatch({ type: POST_MSG, payload: msg });
-				})
-				.catch(error => {
-					console.log('Error posting message to chat. ', error);
-					dispatch({ type: POST_MSG_FAIL, payload: error });
-				});
-		};
+		const timeStamp = Date.now();
+		getFrame(getUrl(message.message))
+			.then((thumbnail) => {
+				const msg = { ...message, dateTime: timeStamp, thumbnail };
+				setFirebaseMessage(msg, chatId, timeStamp, dispatch);
+			})
+			.catch(() => {
+				const msg = { ...message, dateTime: timeStamp };
+				setFirebaseMessage(msg, chatId, timeStamp, dispatch);
+			});
+	};
 }
 
+function setFirebaseMessage(msg, chatId, timeStamp, dispatch) {
+	getFirebaseDb()
+		.child(`entities/chats/${chatId}/${timeStamp}`)
+		.set(msg)
+		.then(() => {
+			dispatch({ type: POST_MSG, payload: msg });
+		})
+		.catch(error => {
+			console.log('Error posting message to chat. ', error);
+			dispatch({ type: POST_MSG_FAIL, payload: error });
+		});
+}
+
+function getFrame(url) {
+	if (url) {
+		const ROOT_URL = `http://iframe.ly/api/iframely?url=${url}&api_key=${IFRAMELY_API_KEY}&iframe=true&omit_script=true`;
+		const request = axios.get(ROOT_URL);
+		return request
+			.then((response) => response.data.html)
+			.catch(() => '');
+	} else {
+		return Promise.resolve('');
+	}
+}
+
+function getUrl(text) {
+	const urlRegex = /(([a-z]+:\/\/)?(([a-z0-9\-]+\.)+([a-z]{2}|aero|arpa|biz|com|coop|edu|gov|info|int|jobs|mil|museum|name|nato|net|org|pro|travel|local|internal))(:[0-9]{1,5})?(\/[a-z0-9_\-\.~]+)*(\/([a-z0-9_\-\.]*)(\?[a-z0-9+_\-\.%=&amp;]*)?)?(#[a-zA-Z0-9!$&'()*+.=-_~:@/?]*)?)(\s+|$)/gi;
+	const arrayUrl = urlRegex.exec(text);
+	if (arrayUrl) {
+		return arrayUrl.shift();
+	} else {
+		return null;
+	}
+}
 
 //This function should map the Firebase snapshot to
 //the groupInfo object and what data we want to load into
@@ -83,17 +117,17 @@ export function fetchGroupChatInfo(group, channel) {
 		dispatch({ type: CHAT_LOADING });
 
 		getFirebaseDb().child(groupChatInfo)
-				.on('value', groupInfoSnapshot => dispatch(groupChatInfoLoaded(groupInfoSnapshot)));
-				// .catch(error => {
-				// 	console.log(`Could not load group. Detail ${error}`);
-				// 	dispatch(groupChatLoadFailed(error));
-				// });
+			.on('value', groupInfoSnapshot => dispatch(groupChatInfoLoaded(groupInfoSnapshot)));
+		// .catch(error => {
+		// 	console.log(`Could not load group. Detail ${error}`);
+		// 	dispatch(groupChatLoadFailed(error));
+		// });
 
 		getFirebaseDb().child(groupChatId)
-				.on('value', msgsSnapshot => dispatch(groupChatMsgLoaded(msgsSnapshot)));
-				// .catch(error => {
-				// 	console.log(`Could not load group. Detail ${error}`);
-				// 	dispatch(groupChatLoadFailed(error));
-				// });
+			.on('value', msgsSnapshot => dispatch(groupChatMsgLoaded(msgsSnapshot)));
+		// .catch(error => {
+		// 	console.log(`Could not load group. Detail ${error}`);
+		// 	dispatch(groupChatLoadFailed(error));
+		// });
 	};
 }

@@ -61,14 +61,16 @@ function createChatData(name) {
 			[timeStamp]: {
 				username: 'chat-bot',
 				dateTime: timeStamp,
-				message: 'Welcome to Group Chat!'
+				message: 'Welcome to Group Chat!',
+				thumbnail: ''
 			}
 		},
 		[commonChannelId]: {
 			[timeStamp]: {
 				username: 'chat-bot',
 				dateTime: timeStamp,
-				message: 'Welcome to the Common chat room!'
+				message: 'Hi there! Try using links!',
+				thumbnail: ''
 			}
 		}
 	};
@@ -166,7 +168,8 @@ function createChannelChatData(group, channel) {
 			[timeStamp]: {
 				username: 'chat-bot',
 				dateTime: timeStamp,
-				message: 'Welcome to Group Chat!'
+				message: 'Hi there! Try using links!',
+				thumbnail: ''
 			}
 		}
 	};

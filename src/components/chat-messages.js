@@ -23,6 +23,7 @@ export default class ChatMessages extends Component {
           username={message.username}
           message={message.message}
           time={message.dateTime}
+          thumbnail={message.thumbnail}
         />
       );
     });

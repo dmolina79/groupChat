@@ -11,13 +11,12 @@ class Signout extends Component {
 
 	render() {
 		return (
-			<div className="container" id="signOutContainer">
-			<h1>You have signed out of group chat</h1>
-			<img alt="img" src="img/sorryface.jpg" className="sorryface" />
-			<div className="btn-group" role="group">
-			<Link className="btn btn-warning" to="/signin">Sign back in</Link>
- </div>
-		</div>
+			<section className='jumbotron d-flex flex-column justify-content-center expand'>
+				<div className='text-center'>
+					<h1 className='display-1'><strong>You have signed out</strong></h1>
+					<h4 className='lead mt-4'>Come Back Later!</h4>
+				</div>
+			</section>
 	);
 	}
 }

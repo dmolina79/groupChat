@@ -9,7 +9,10 @@
     "start": "node server.js", 
     "start-dev": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --progress --hot --inline",
     "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test",
-    "test:watch": "npm run test -- --watch"
+    "test:watch": "npm run test -- --watch",
+    "clean": "rimraf public/bundle.js",
+    "prod": "NODE_ENV=production node server.js",
+    "postinstall": "webpack -p"
   },
   "author": "Doug Molina",
   "license": "MIT",
