@@ -16,8 +16,9 @@ const config = {
     './src/index.js'
   ],
   output: {
-    path: path.resolve(__dirname, './public'),
-    filename: 'bundle.js'
+    path: __dirname,
+    publicPath: '/public',
+    filename: './public/bundle.js'
   },
   devtool: 'eval-cheap-module-source-map',
   module: {
