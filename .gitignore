@@ -1,5 +1,5 @@
 node_modules
 *.log
 *.env
-
+public/bundle.js
 config/
