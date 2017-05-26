@@ -5,7 +5,7 @@
   "main": "index.js",
   "repository": "git@github.com/dmolina79/groupChat.git",
   "scripts": {
-    "build": "NODE_ENV=production webpack --config ./webpack.config.js --progress --colors",
+    "build": "NODE_ENV=production npm run clean && webpack",
     "start": "node server.js", 
     "start-dev": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --progress --hot --inline",
     "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test",
