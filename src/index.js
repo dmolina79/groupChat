@@ -26,11 +26,11 @@ store.dispatch(Actions.verifyAuth());
 
 ReactDOM.render(
 <Provider store={store}>
-	<Router history={browserHistory} >
-	{/* index route and childs */}
-	<Route path="/" component={App} >
+	<Router history={browserHistory} >	
 		{/* Special route for chatroom */}
 		<Route path="/chatroom/:group/:channel" component={ChatRoom} />
+		{/* index route and childs */}
+		<Route path="/" component={App} >
 			<IndexRoute component={Landing} />
 			<Route path="signin" component={Signin} />
 			<Route path="signout" component={Signout} />
