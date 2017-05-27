@@ -26,7 +26,7 @@ store.dispatch(Actions.verifyAuth());
 
 ReactDOM.render(
 <Provider store={store}>
-	<Router history={browserHistory} >	
+	<Router history={browserHistory} >
 		{/* Special route for chatroom */}
 		<Route path="/chatroom/:group/:channel" component={ChatRoom} />
 		{/* index route and childs */}
