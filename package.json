@@ -12,7 +12,7 @@
     "test:watch": "npm run test -- --watch",
     "clean": "rimraf public/bundle.js",
     "prod": "NODE_ENV=production node server.js",
-    "postinstall": "webpack -p"
+    "postinstall": "webpack --progress -p"
   },
   "author": "Doug Molina",
   "license": "MIT",
