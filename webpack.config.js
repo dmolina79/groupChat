@@ -20,7 +20,7 @@ const config = {
     publicPath: '/public',
     filename: './public/bundle.js'
   },
-  devtool: 'eval-cheap-module-source-map',
+  devtool: 'cheap-module-source-map',
   module: {
     loaders: [{
       exclude: /node_modules/,
