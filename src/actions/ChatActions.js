@@ -48,7 +48,7 @@ function setFirebaseMessage(msg, chatId, timeStamp, dispatch) {
 
 function getFrame(url) {
 	if (url) {
-		const ROOT_URL = `http://iframe.ly/api/iframely?url=${url}&api_key=${IFRAMELY_API_KEY}&iframe=true&omit_script=true`;
+		const ROOT_URL = `https://iframe.ly/api/iframely?url=${url}&api_key=${IFRAMELY_API_KEY}&iframe=true&omit_script=true`;
 		const request = axios.get(ROOT_URL);
 		return request
 			.then((response) => response.data.html)
