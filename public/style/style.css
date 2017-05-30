@@ -166,3 +166,25 @@ a:hover, a:focus {
 
 }
 
+@media (max-width: 425px) {
+
+	.expand {
+		font-size: 10px;
+		top: auto;
+		margin-top: -100px;
+
+	}
+	.logo {
+		height: 25px;
+		margin: 15px;
+
+	}
+	.display-3 {
+		font-size: 40px;
+	}
+.display-1 {
+	font-size: 40px;
+}
+
+
+}
