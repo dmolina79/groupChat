@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
 
-class Header extends Component {
+export class Header extends Component {
 	renderLinks() {
 		const authenticated = this.props.authenticated;
 		let links = [];

@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Header from '../../src/containers/header';
+import { Header } from '../../src/containers/header';
+
 
 /*global describe b:true*/
 /*global it b:true*/
@@ -20,12 +21,27 @@ describe('Header Component Test', () => {
     //testComponent = shallow(<Header {...initialState} />);
   });
 
-  it('Header shows Welcome message ', () => {
+  it('should show Sign In/Sign Up When Not authenticated ', () => {
     //setup (optional)
 
     //execution
-    //testComponent = shallow(<Header {...initialState} />);
-    //check/verify/assert/expect
-   
+    testComponent = shallow(<Header {...initialState} />);
+    
+    const navBar = testComponent.find('.nav-link');
+    expect(navBar).toHaveLength(2);
+    expect(navBar.contains('Sign In')).toEqual(true);
+    expect(navBar.contains('Sign Up')).toEqual(true);
+  });
+
+  it('should preserve snapshot', () => {
+    //setup (optional)
+
+    //execution
+    testComponent = shallow(<Header {...initialState} />);
+    
+    const navBar = testComponent.find('.nav-link');
+    expect(navBar).toHaveLength(2);
+    expect(navBar.contains('Sign In')).toEqual(true);
+    expect(navBar.contains('Sign Up')).toEqual(true);
   });
 });
