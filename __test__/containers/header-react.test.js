@@ -12,6 +12,7 @@ import { Header } from '../../src/containers/header';
 describe('Header Component Test', () => {
   let testComponent;
   let initialState;
+  let authState;
 
   //this is a comments
 
@@ -19,12 +20,12 @@ describe('Header Component Test', () => {
     initialState = {
 			authenticated: false
 		};
-    //testComponent = shallow(<Header {...initialState} />);
+    authState = {
+      authenticated: true
+    };
   });
 
   it('should show Sign In/Sign Up When Not authenticated ', () => {
-    //setup (optional)
-
     //execution
     testComponent = shallow(<Header {...initialState} />);
     
@@ -34,10 +35,30 @@ describe('Header Component Test', () => {
     expect(navBar.contains('Sign Up')).toEqual(true);
   });
 
-  it('should preserve snapshot', () => {
+  it('should show Application Links When User Authenticated ', () => {
+    //execution
+    testComponent = shallow(<Header {...authState} />);
+    
+    const navBar = testComponent.find('.nav-link');
+    expect(navBar).toHaveLength(3);
+    expect(navBar.contains('Create a GroupChat')).toEqual(true);
+    expect(navBar.contains('Find a GroupChat')).toEqual(true);
+    expect(navBar.contains('Sign Out')).toEqual(true);
+  });
+
+  it('when not authenticated it renders links correctly on snapshot', () => {
     //execution
      const tree = renderer.create(
         <Header {...initialState} />
+      ).toJSON();
+
+     expect(tree).toMatchSnapshot();
+  });
+
+   it('when authenticated it renders links correctly on snapshot', () => {
+    //execution
+     const tree = renderer.create(
+        <Header {...authState} />
       ).toJSON();
 
     expect(tree).toMatchSnapshot();
