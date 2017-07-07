@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header Component Test should preserve snapshot 1`] = `
+<nav
+  className="navbar navbar-toggleable sticky-top"
+>
+  <button
+    aria-controls="navbarNav"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+    className="navbar-toggler navbar-toggler-right"
+    data-target="#navbarNav"
+    data-toggle="collapse"
+    type="button"
+  >
+    <span
+      className="navbar-toggler-icon"
+    />
+  </button>
+  <a
+    className="navbar-brand"
+    onClick={[Function]}
+    style={Object {}}
+  >
+    <strong>
+      GroupChat
+    </strong>
+  </a>
+  <div
+    className="collapse navbar-collapse"
+    id="navbarNav"
+  >
+    <div
+      className="navbar-nav ml-auto text-center"
+    >
+      <a
+        className="nav-item nav-link"
+        onClick={[Function]}
+        style={Object {}}
+      >
+        Sign In
+      </a>
+      <a
+        className="nav-item nav-link"
+        onClick={[Function]}
+        style={Object {}}
+      >
+        Sign Up
+      </a>
+    </div>
+  </div>
+</nav>
+`;
