@@ -39,7 +39,6 @@ export class Header extends Component {
 						{this.renderLinks()}
 					</div>
 				</div>
-
 			</nav >
 
 		);

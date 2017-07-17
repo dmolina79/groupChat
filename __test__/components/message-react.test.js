@@ -39,7 +39,6 @@ describe('Message', () => {
         expect(componentMessage.contains(msg.username)).toEqual(true);
         expect(componentMessage.contains(msg.message)).toEqual(true);
         expect(componentMessage.contains(Moment(msg.time).calendar())).toEqual(true);
- 
     });
 
     
