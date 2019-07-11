@@ -16,9 +16,7 @@ Uses Iframe.ly Api to get Slack like rich media experience into your chat rooms.
 </a>
 
 
-<a href='https://stablepay.io/checkout?data=%7B"stablepay"%3Atrue%2C"payload"%3A%7B"type"%3A"Donation"%2C"source"%3A%7B"name"%3A"Donate%20to%20StablePay%20Project!"%2C"address"%3A"0xb6568dc090302196EC8EDf56D99C3484cEe94E6a"%7D%2C"amount"%3A%7B"total"%3A5%2C"options"%3A%5B5%2C10%2C15%2C25%2C50%5D%2C"currency"%3A"USD"%2C"sign"%3A"%24"%7D%2C"callbackURL"%3A"https%3A%2F%2Fstablepay.io"%7D%7D'>
-<img src="https://stablepay.io/static/DonationsButtonBlueBlack.svg" >
-</a>
+
 
 
 ## Getting Started
