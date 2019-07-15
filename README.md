@@ -10,9 +10,6 @@ Uses Iframe.ly Api to get Slack like rich media experience into your chat rooms.
 
 
 
-<a href="https://stablepay.herokuapp.com/checkout?data=%7B%22stablepay%22%3Atrue%2C%22payload%22%3A%7B%22type%22%3A%22Donation%22%2C%22source%22%3A%7B%22name%22%3A%22chatgroup%22%2C%22address%22%3A%220x8b59ae6ec3Ef31c796600373a0Add1d91bD1c00e%22%7D%2C%22amount%22%3A%7B%22total%22%3A5%2C%22options%22%3A%5B5%2C10%2C15%2C25%5D%2C%22currency%22%3A%22USD%22%2C%22sign%22%3A%22%24%22%7D%2C%22theme%22%3A%22standard%22%2C%22callbackURL%22%3A%22www.google.com%22%7D%7D">
-    <img src="https://stablepay.io/static/DonationButtonBlueBlack.svg" >
-</a>
 
 
 
