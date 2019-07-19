@@ -10,8 +10,12 @@ Uses Iframe.ly Api to get Slack like rich media experience into your chat rooms.
 
 
 
-<img src="https://stablepay.herokuapp.com/static/DonationsButtonBlueWhite.svg" >
- <img src="https://stablepay.herokuapp.com/static/DonationsButtonBlueWhite.svg" >
+<a href="https://stablepay.herokuapp.com/checkout?data=%7B%22stablepay%22%3Atrue%2C%22payload%22%3A%7B%22type%22%3A%22Donation%22%2C%22source%22%3A%7B%22name%22%3A%22ChatGroup%22%2C%22address%22%3A%220xAFeb27406862068e7D2879254D88675325b46263%22%7D%2C%22amount%22%3A%7B%22total%22%3A5%2C%22options%22%3A%5B5%2C10%2C15%2C25%2C30%5D%2C%22currency%22%3A%22USD%22%2C%22sign%22%3A%22%24%22%7D%2C%22theme%22%3A%22colored%22%2C%22callbackURL%22%3A%22https%3A%2F%2Fgithub.com%2Fdmolina79%2FgroupChat%22%7D%7D">
+    <img src="https://stablepay.herokuapp.com/static/DonationsButtonBlueWhite.svg" >
+</a>
+
+
+ stablepay.herokuapp.com
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. Note: this instructions assume you have a *NIX type terminal.
