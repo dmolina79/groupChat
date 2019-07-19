@@ -10,7 +10,7 @@ Uses Iframe.ly Api to get Slack like rich media experience into your chat rooms.
 
 
 
-
+<img src="https://stablepay.herokuapp.com/static/DonationsButtonBlueWhite.svg" >
  <img src="https://stablepay.herokuapp.com/static/DonationsButtonBlueWhite.svg" >
 ## Getting Started
 
